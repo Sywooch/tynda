@@ -2,11 +2,9 @@
 
 namespace common\models\med;
 
-use common\widgets\Arrays;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\med\VDoctors;
 
 /**
  * DoctorsSearch represents the model behind the search form about `common\models\med\Doctors`.
@@ -151,8 +149,12 @@ class DoctorsSearch extends VDoctors
 
 
         $query->andWhere($sql);
-        $query->andWhere(['>','price',$this->price_min]);
-        $query->andWhere(['<','price',$this->price_max]);
+        if(!empty($this->price_min)){
+            $query->andWhere(['>','price',$this->price_min]);
+        }
+        if(!empty($this->price_max)){
+            $query->andWhere(['<','price',$this->price_max]);
+        }
         return $dataProvider;
 
     }
