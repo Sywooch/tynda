@@ -44,10 +44,10 @@ $spec = \common\models\med\Spec::find()->asArray()->all();
             ])->label('Укажите Вашу медецинскую специализацию'); ?>
         </div>
         <div class="filter_element col-sm-2 side_left">
-            <?= $form->field($model, 'exp')->textInput()->label('Стаж работы (кол-во лет).'); ?>
+            <?= $form->field($model, 'exp')->textInput()->label('Стаж работы (кол-во лет)'); ?>
         </div>
         <div class="filter_element col-sm-2 side_left">
-            <?= $form->field($model, 'price')->textInput(); ?>
+            <?= $form->field($model, 'price')->textInput()->label('Стоимость приема(руб)'); ?>
         </div>
         <div class="filter_element col-sm-3">
             <?= $form->field($model, 'receiving')->widget(Select2::classname(), [
