@@ -151,8 +151,8 @@ class DoctorsSearch extends VDoctors
 
 
         $query->andWhere($sql);
-        $query->andWhere(['price'=>$this->price_min,'>']);
-        $query->andWhere(['price'=>$this->price_max,'<']);
+        $query->andWhere(['>','price',$this->price_min]);
+        $query->andWhere(['<','price',$this->price_max]);
         return $dataProvider;
 
     }
