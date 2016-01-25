@@ -31,6 +31,8 @@ class CategJob extends Widget
 
     public function run($cats, $for = 'res'){
         $user = \Yii::$app->user->getIdentity();
+        $path = Url::current();
+        stristr($path, 'vacancy') ? $is_vacancy = true : $is_vacancy = false;
         $is_company = $user['company'];
         self::registerCss();
         echo '<div class="left-cat">';
@@ -38,7 +40,7 @@ class CategJob extends Widget
         echo '<i class="fa fa-graduation-cap"></i>';
         echo '<span style="padding-left: 9px;">Сфера деятельности: </span>';
         echo '</h2>';
-            if ($is_company) {
+            if ($is_vacancy) {
                 echo Html::a('<i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Подать вакансию', ['/jobs/vacancy/create'], ['class' => 'btn-u btn-u-default','style'=>'padding: 9px 2px 9px 17px; font-size:1.1em; width:100%;']);
             } else {
                 echo Html::a('<i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Подать резюме', ['/jobs/resume/create'], ['class' => 'btn-u btn-u-default','style'=>'padding: 9px 2px 9px 17px; font-size:1.1em; width:100%;']);
