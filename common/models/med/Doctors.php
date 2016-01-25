@@ -57,6 +57,7 @@ class Doctors extends \yii\db\ActiveRecord
         return [
             [['id_user'], 'required'],
             [['id_user', 'id_spec', 'status', 'confirmed', 'exp', 'receiving'], 'integer'],
+            [['price'], 'number'],
             [['about'], 'string', 'max' => 250],
             [['updated_at', 'created_at'], 'safe'],
             [['rank', 'address', 'documents','m_keyword','m_description'], 'string', 'max' => 255],
