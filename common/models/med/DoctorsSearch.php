@@ -15,7 +15,7 @@ class DoctorsSearch extends VDoctors
 {
     public $exp_min; //Стаж
     public $exp_max;
-    public $price_min; //Стаж
+    public $price_min; //Стоимость приема
     public $price_max;
     public $cat; //Специализация
     /**

@@ -78,6 +78,7 @@ class Doctors extends \yii\db\ActiveRecord
             'status' => 'Статус',
             'confirmed' => 'Подтвержден',
             'rank' => 'Звание, уч. степень',
+            'price' => 'Стоимость приема',
             'about' => 'О себе',
             'exp' => 'Стаж',
             'receiving' => 'Веду прием',
