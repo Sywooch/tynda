@@ -44,6 +44,7 @@ class VDoctors extends \yii\db\ActiveRecord
     {
         return [
             [['id_user', 'id_spec', 'status', 'confirmed', 'exp', 'receiving', 'u_status', 'company', 'doctor'], 'integer'],
+            [['price'], 'number'],
             [['about'], 'string'],
             [['updated_at', 'created_at'], 'safe'],
             [['rank', 'address', 'documents', 'search_field','m_keyword','m_description'], 'string', 'max' => 255],
