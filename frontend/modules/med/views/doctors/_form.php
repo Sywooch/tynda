@@ -33,7 +33,7 @@ $spec = \common\models\med\Spec::find()->asArray()->all();
         </div>
         </div>
 
-        <div class="filter_element col-sm-5 side_left">
+        <div class="filter_element col-sm-6 side_left">
             <?= $form->field($model, 'id_spec')->widget(Select2::classname(), [
                 'data' => ArrayHelper::map($spec, 'id', 'name'),
                 'hideSearch' => true,
