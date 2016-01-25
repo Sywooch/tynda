@@ -55,7 +55,7 @@ class Doctors extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_user'], 'required'],
+            [['id_user','price'], 'required'],
             [['id_user', 'id_spec', 'status', 'confirmed', 'exp', 'receiving'], 'integer'],
             [['price'], 'number'],
             [['about'], 'string', 'max' => 250],
