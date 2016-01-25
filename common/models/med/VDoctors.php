@@ -63,6 +63,7 @@ class VDoctors extends \yii\db\ActiveRecord
             'id_user' => 'Id User',
             'id_spec' => 'Id Spec',
             'spec' => 'Специальность',
+            'price' => 'Стоимость приема',
             'status' => 'Статус',
             'doctor' => 'Доктор',
             'confirmed' => 'Подтверден',
