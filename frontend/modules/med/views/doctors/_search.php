@@ -55,7 +55,15 @@ use common\widgets\Arrays;
                 </tr>
             </table>
         </div>
-
+        <div class="filter_element col-sm-3 side_left">
+            <label class="control-label" for="el-salary">Стоимость приема:</label>
+            <table id="el-salary">
+                <tr>
+                    <td><?= $form->field($model, 'price_min', ['inputOptions' => ['class' => 'form-control', 'placeholder' => 'от']])->label(false) ?></td>
+                    <td><?= $form->field($model, 'price_max', ['inputOptions' => ['class' => 'form-control', 'placeholder' => 'до']])->label(false) ?></td>
+                </tr>
+            </table>
+        </div>
 
     </div>
 

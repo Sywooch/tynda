@@ -15,6 +15,8 @@ class DoctorsSearch extends VDoctors
 {
     public $exp_min; //Стаж
     public $exp_max;
+    public $price_min; //Стаж
+    public $price_max;
     public $cat; //Специализация
     /**
      * @inheritdoc
@@ -24,6 +26,7 @@ class DoctorsSearch extends VDoctors
         return [
             [['id_user', 'id_spec', 'status', 'confirmed', 'exp', 'receiving', 'exp_min', 'exp_max', 'cat', 'doctor'], 'integer'],
             [['updated_at', 'created_at',], 'safe'],
+            [['price','price_min','price_max'], 'number'],
             [['rank', 'about', 'address', 'documents', 'search_field', 'spec','m_keyword','m_description'], 'string'],
             [['rank', 'about', 'address', 'documents', 'search_field', 'spec','m_keyword','m_description'], 'filter', 'filter'=>'strip_tags'],
         ];
@@ -148,7 +151,8 @@ class DoctorsSearch extends VDoctors
 
 
         $query->andWhere($sql);
-
+        $query->andWhere(['price'=>$this->price_min,'>']);
+        $query->andWhere(['price'=>$this->price_max,'<']);
         return $dataProvider;
 
     }
