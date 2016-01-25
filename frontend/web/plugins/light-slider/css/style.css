@@ -1,0 +1,12 @@
+ul{
+    list-style: none outside none;
+    padding-left: 0;
+    margin: 0;
+}
+.demo .item{
+    margin-bottom: 0px;
+}
+
+.demo{
+    width: 100%;
+}
