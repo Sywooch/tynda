@@ -37,7 +37,7 @@ class NewsMainWidget extends Widget
         if (is_array($news) && !empty($news)) {
             echo '<table class="main-table">';
             echo '<th colspan="2">';
-                echo 'Новости';
+                    echo '<span class="title-underblock title-bottom-border dark">Новости</span>';
             echo '</th>';
             foreach ($news as $item) {
                 echo '<tr>';
@@ -45,7 +45,7 @@ class NewsMainWidget extends Widget
                 echo '<td class="news-img" style="padding: 10px; width: 130px;">';
                 echo Html::a(Avatar::imgNews($item['thumbnail'],'111px; border: 1px solid #c6c6c6; padding: 1px;'), [$path, 'id' => $item['alias']]);
                 echo '</td>';
-                echo '<td style="padding: 10px;">';
+                echo '<td style="padding: 10px 10px 10px 0px;">';
                 echo Html::a($item['title'], [$path, 'id' => $item['alias']], ['class' => '', 'style' => 'margin-left: 0px;', 'title' => 'Подробнее']);
                 echo '<br><i class="small-text" >Категория:</i> '. Html::a($item['cat']['name'],['/news/news/index/','cat'=>$item['cat']['alias']]);
                 echo '<ul class="list-inline"><li class="tag-sign" style="margin-right: 5px;">Теги: </li>';

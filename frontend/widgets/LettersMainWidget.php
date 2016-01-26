@@ -37,7 +37,7 @@ class LettersMainWidget extends Widget
         if (is_array($letters) && !empty($letters)) {
             echo '<table class="main-table">';
             echo '<th colspan="2">';
-                echo 'Новые коллективные письма';
+            echo '<span class="title-underblock title-bottom-border dark">Новые коллективные письма</span>';
             echo '</th>';
             foreach ($letters as $item) {
                 echo '<tr>';

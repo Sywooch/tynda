@@ -37,7 +37,7 @@ class AfishaMainWidget extends Widget
         if (is_array($afisha) && !empty($afisha)) {
             echo '<table class="main-table">';
             echo '<th colspan="2">';
-                echo 'Афиша';
+            echo '<span class="title-underblock title-bottom-border dark">Афиша</span>';
             echo '</th>';
             foreach ($afisha as $item) {
                 echo '<tr>';

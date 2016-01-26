@@ -40,7 +40,7 @@ class ForumMainWidget extends Widget
         if (is_array($forum) && !empty($forum)) {
             echo '<table class="main-table">';
             echo '<th colspan="2">';
-                echo 'Последние сообщения на форуме';
+            echo '<span class="title-underblock title-bottom-border dark">Последние сообщения на форуме</span>';
             echo '</th>';
             foreach ($forum as $item) {
                 echo '<tr>';

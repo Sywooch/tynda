@@ -35,7 +35,7 @@ class ServiceMainWidget extends Widget
         if (is_array($service) && !empty($service)) {
             echo '<table class="main-table">';
             echo '<th colspan="2">';
-                echo 'Услуги';
+            echo '<span class="title-underblock title-bottom-border dark">Услуги</span>';
             echo '</th>';
             foreach ($service as $item) {
                 echo '<tr>';

@@ -34,7 +34,7 @@ class RealtyRentMainWidget extends Widget
         if (is_array($realty) && !empty($realty)) {
             echo '<table class="main-table">';
             echo '<th colspan="2">';
-                echo 'Недвижимость аренда';
+            echo '<span class="title-underblock title-bottom-border dark">Недвижимость аренда</span>';
             echo '</th>';
             foreach ($realty as $item) {
                 echo '<tr>';

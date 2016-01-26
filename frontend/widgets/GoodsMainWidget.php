@@ -35,7 +35,7 @@ class GoodsMainWidget extends Widget
         if (is_array($goods) && !empty($goods)) {
             echo '<table class="main-table">';
             echo '<th colspan="2">';
-                echo 'Новые товары';
+            echo '<span class="title-underblock title-bottom-border dark">Новые товары</span>';
             echo '</th>';
             foreach ($goods as $item) {
                 echo '<tr>';
