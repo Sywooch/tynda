@@ -78,6 +78,7 @@ class AfishaSearch extends Afisha
         }
 
         if(!empty($cat)){
+            AfishaCat::setSessionCategoryTree($cat);
             $leaves = AfishaCat::getLeavesNodesByAlias($cat);
             foreach($leaves as $leav){
                 $cat_id[] = $leav['id'];

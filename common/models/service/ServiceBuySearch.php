@@ -128,7 +128,8 @@ class ServiceBuySearch extends VService
 
         $get = \Yii::$app->request->get('cat');
         if(!empty($get)|| !empty($this->cat)){
-            ServiceCat::setSessionCategoryTree();
+            $_cat = !empty($get) ? $get : $this->cat;
+            ServiceCat::setSessionCategoryTree($_cat);
             $ses = Yii::$app->session;
             $ses->open();
             $cur_cat = $ses->get('current_cat');

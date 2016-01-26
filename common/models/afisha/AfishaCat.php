@@ -104,15 +104,7 @@ class AfishaCat extends \kartik\tree\models\Tree
         return $parent;
     }
 
-    public static function setSessionCategoryTree(){
-        $get = Yii::$app->request->get();
-        if(!empty($get['cat'])&&isset($get['cat'])){
-            $currentCategory = $get['cat'];
-        }elseif(!empty($get['ServiceSearch']['cat'])&&isset($get['ServiceSearch']['cat'])){
-            $currentCategory = $get['ServiceSearch']['cat'];
-        }elseif(!empty($get['ServiceBuySearch']['cat'])&&isset($get['ServiceBuySearch']['cat'])){
-            $currentCategory = $get['ServiceBuySearch']['cat'];
-        }else{$currentCategory = false;}
+    public static function setSessionCategoryTree($currentCategory = false){
         if($currentCategory){
             $current_cat = self::getCategoryByAlias($currentCategory);
             $cat_fchild = self::getFirstChildrenNodesByAlias($currentCategory);

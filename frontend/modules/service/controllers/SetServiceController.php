@@ -84,6 +84,7 @@ class SetServiceController extends Controller
     public function actionView($id)
     {
         $model = VServiceBuy::find()->where(['id'=>$id])->asArray()->one();
+        ServiceCat::setSessionCategoryTree($model['alias']);
         return $this->render('view', [
             'model' => $model,
         ]);

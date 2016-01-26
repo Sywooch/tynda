@@ -128,6 +128,7 @@ class ServiceController extends Controller
     public function actionView($id)
     {
         $model = VService::find()->where(['id'=>$id])->asArray()->one();
+        ServiceCat::setSessionCategoryTree($model['alias']);
         return $this->render('view', [
             'model' => $model,
         ]);
@@ -140,6 +141,7 @@ class ServiceController extends Controller
     public function actionViewBuy($id)
     {
         $model = VServiceBuy::find()->where(['id'=>$id])->asArray()->one();
+        ServiceCat::setSessionCategoryTree($model['alias']);
         return $this->render('view-buy', [
             'model' => $model,
         ]);

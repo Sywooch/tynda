@@ -18,7 +18,7 @@ $this->title = !empty($cur_cat) ? $cur_cat['name'] : 'Афиша';
 $this->params['right'] = true;
 $this->params['left'] = true;
 if(!empty($cur_cat)){
-    $this->params['breadcrumbs'][] = ['label' => 'Статьи', 'url' => ['index']];
+    $this->params['breadcrumbs'][] = ['label' => 'Афиша', 'url' => ['index']];
     $m_kw = $cur_cat['m_keyword'];
     $m_d = $cur_cat['m_description'];
 }else{
