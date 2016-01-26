@@ -86,15 +86,7 @@
             return $parent;
         }
 
-        public static function setSessionCategoryTree(){
-            $get = Yii::$app->request->get();
-            if(!empty($get['cat'])&&isset($get['cat'])){
-                $currentCategory = $get['cat'];
-            }elseif(!empty($get['RealtySaleSearch']['cat'])&&isset($get['RealtySaleSearch']['cat'])){
-                $currentCategory = $get['RealtySaleSearch']['cat'];
-            }elseif(!empty($get['RealtyRentSearch']['cat'])&&isset($get['RealtyRentSearch']['cat'])){
-                $currentCategory = $get['RealtyRentSearch']['cat'];
-            }else{$currentCategory = false;}
+        public static function setSessionCategoryTree($currentCategory = false){
             if($currentCategory){
                 $current_cat = self::getCategoryByAlias($currentCategory);
                 $cat_fchild = self::getFirstChildrenNodesByAlias($currentCategory);

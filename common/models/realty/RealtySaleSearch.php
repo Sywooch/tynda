@@ -67,7 +67,8 @@ class RealtySaleSearch extends VRealtySale
     {
         $get = \Yii::$app->request->get('cat');
         if(!empty($get)|| !empty($this->cat)){
-            RealtyCat::setSessionCategoryTree();
+            $_cat = !empty($get) ? $get : $this->cat;
+            RealtyCat::setSessionCategoryTree($_cat);
             $ses = Yii::$app->session;
             $ses->open();
             $cur_cat = $ses->get('current_cat');

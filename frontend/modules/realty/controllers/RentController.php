@@ -107,6 +107,7 @@ class RentController extends Controller
     public function actionView($id)
     {
         $model = VRealtyRent::find()->where(['id'=>$id])->asArray()->one();
+        RealtyCat::setSessionCategoryTree($model['alias']);
         $images = RealtyRentImg::find()->where(['id_ads'=>$model['id']])->asArray()->all();
         return $this->render('view', [
             'model' => $model,

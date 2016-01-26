@@ -28,7 +28,14 @@ $this->params['left'] = true;
 $this->params['right'] = true;
 $this->title = $model['name'];
 $this->params['breadcrumbs'][] = ['label' => 'Объявления о продаже недвижимости', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $cur_cat['name'], 'url' => ['index','cat'=>$cur_cat['alias']]];
+if(!empty($parent_cat)){
+    foreach($parent_cat as $cat){
+        $this->params['breadcrumbs'][] = ['label' => $cat['name'], 'url' => [Url::to('index'), 'cat'=>$cat['alias']]];
+    }
+}
+if(!empty($cur_cat)) {
+    $this->params['breadcrumbs'][] = ['label' =>  $cur_cat['name'], 'url' => ['index', 'cat'=>$cur_cat['alias']]];
+}
 $this->params['breadcrumbs'][] = $this->title;
 $user = Yii::$app->user->getIdentity();
 $path = Url::to('@frt_url/img/realty_sale/');
