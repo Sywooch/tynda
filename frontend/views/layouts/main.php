@@ -52,8 +52,13 @@ AppAsset::register($this);
                     <?= Breadcrumbs::widget([
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                     ]) ?>
-                    <?= Alert::widget() ?>
-                    <?= $content ?>
+
+                        <?= Alert::widget() ?>
+
+                    <br>
+                        <?= $content ?>
+
+
                 </div>
             <?php }elseif (($this->params['left'])&&($this->params['right'])) { //Если левы правый блоки и центр ?>
                 <div class="col-md-3 main_left side_left">
