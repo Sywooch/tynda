@@ -977,3 +977,14 @@ ul.sorter > li a{
     width: 50px;
 }
 
+.slider-on-main{
+    margin-top: 30px;
+}
+
+.item h2{
+    font-size: 1.2em;
+}
+.item p{
+    font-size: 0.9em;
+}
+

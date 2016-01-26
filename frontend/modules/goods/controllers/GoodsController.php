@@ -104,6 +104,7 @@ class GoodsController extends Controller
     public function actionView($id)
     {
         $model = VGoods::find()->where(['id'=>$id])->asArray()->one();
+        GoodsCat::setSessionCategoryTree($model['alias']);
         return $this->render('view', [
             'model' => $model,
         ]);

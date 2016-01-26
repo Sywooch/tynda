@@ -23,7 +23,7 @@ class SliderOnMain extends Widget
     {
         self::registerCss();
         if(!empty($images[0])){
-            echo '<div class="demo">';
+            echo '<div id="slider-on-main" class="demo">';
                 echo '<div class="item">';
                     echo '<div class="clearfix" style="">';
                     echo '<ul id="image-gallery" class="gallery list-unstyled cS-hidden">';

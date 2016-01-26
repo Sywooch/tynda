@@ -87,13 +87,7 @@
             return $parent;
         }
 
-        public static function setSessionCategoryTree(){
-            $get = Yii::$app->request->get();
-            if(!empty($get['cat'])&&isset($get['cat'])){
-                $currentCategory = $get['cat'];
-            }elseif(!empty($get['GoodsSearch']['cat'])&&isset($get['GoodsSearch']['cat'])){
-                $currentCategory = $get['GoodsSearch']['cat'];
-            }else{$currentCategory = false;}
+        public static function setSessionCategoryTree($currentCategory = false){
             if($currentCategory){
                 $current_cat = self::getCategoryByAlias($currentCategory);
                 $cat_fchild = self::getFirstChildrenNodesByAlias($currentCategory);

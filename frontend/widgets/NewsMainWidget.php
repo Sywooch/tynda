@@ -42,8 +42,8 @@ class NewsMainWidget extends Widget
             foreach ($news as $item) {
                 echo '<tr>';
                 $path = '/news/news/view';
-                echo '<td class="news-img" style="padding: 10px; width: 130px;">';
-                echo Html::a(Avatar::imgNews($item['thumbnail'],'111px; border: 1px solid #c6c6c6; padding: 1px;'), [$path, 'id' => $item['alias']]);
+                echo '<td class="news-img" style="padding: 7px; width: 120px;">';
+                echo Html::a(Avatar::imgNews($item['thumbnail'],'95px; border: 1px solid #c6c6c6; padding: 1px;'), [$path, 'id' => $item['alias']]);
                 echo '</td>';
                 echo '<td style="padding: 10px 10px 10px 0px;">';
                 echo Html::a($item['title'], [$path, 'id' => $item['alias']], ['class' => '', 'style' => 'margin-left: 0px;', 'title' => 'Подробнее']);
