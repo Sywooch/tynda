@@ -13,10 +13,25 @@ if (!empty($model['m_description'])) {
 if (!empty($model['m_keyword'])) {
     $this->registerMetaTag(['content' => Html::encode($model['m_keyword']), 'name' => 'keywords']);
 }
+$ses = Yii::$app->session;
+$ses->open();
+$cur_cat = $ses->get('current_cat');
+$parent_cat = $ses->get('parent_cat');
+$first_child = $ses->get('first_child');
+$ses->close();
+
 $this->params['left'] = true;
 $this->params['right'] = true;
 $this->title = $model['name'];
-$this->params['breadcrumbs'][] = ['label' => 'Услуги', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Хотят получить услуги', 'url' => ['index']];
+if(!empty($parent_cat)){
+    foreach($parent_cat as $cat){
+        $this->params['breadcrumbs'][] = ['label' => $cat['name'], 'url' => [Url::to('index'), 'cat'=>$cat['alias']]];
+    }
+}
+if(!empty($cur_cat)) {
+    $this->params['breadcrumbs'][] = ['label' =>  $cur_cat['name'], 'url' => ['index', 'cat'=>$cur_cat['alias']]];
+}
 $this->params['breadcrumbs'][] = $this->title;
 $user = Yii::$app->user->getIdentity();
 ?>

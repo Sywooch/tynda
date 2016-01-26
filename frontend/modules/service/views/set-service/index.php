@@ -14,7 +14,7 @@ $cur_cat = $ses->get('current_cat');
 $parent_cat = $ses->get('parent_cat');
 $first_child = $ses->get('first_child');
 $ses->close();
-$this->title = !empty($cur_cat) ? 'Хотят получить услуги по: '. $cur_cat['name'] : 'Хотят получить услуги';
+$this->title = 'Хотят получить услуги';
 $this->params['left'] = true;
 $this->params['right'] = true;
 if(!empty($cur_cat)){
@@ -31,7 +31,12 @@ if(!empty($parent_cat)){
         $this->params['breadcrumbs'][] = ['label' => $item['name'], 'url' => ['index', 'cat'=>$item['alias']]];
     }
 }
-$this->params['breadcrumbs'][] = $this->title;
+if(!empty($cur_cat)) {
+    $this->params['breadcrumbs'][] = ['label' =>  $cur_cat['name'], 'url' => ['index', 'cat'=>$cur_cat['alias']]];
+}else{
+    $this->params['breadcrumbs'][] = $this->title;
+}
+
 if (!empty($m_d)) {
     $this->registerMetaTag(['content' => Html::encode($m_d), 'name' => 'description']);
 }
