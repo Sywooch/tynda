@@ -660,6 +660,10 @@ ul.sorter > li a{
     margin-bottom: 4px;
 }
 
+.control-label{
+    font-size: 0.8em;
+}
+
 .tags{
     display: inline-block;
     height: 21px;

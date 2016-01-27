@@ -60,7 +60,7 @@ if(!empty($cur_cat)){
                         ])->label('Подкатегория'); ?>
                     </div>
                 <?php }*/ ?>
-                <div id="resell" class="filter_element col-sm-3 side_left" style="display: <?=$resell?>">
+                <div id="resell" class="filter_element col-sm-4 side_left" style="display: <?=$resell?>">
                     <?= $form->field($model, 'resell')->widget(Select2::classname(), [
                         'data' => \yii\helpers\ArrayHelper::map(RealtyArrays::realtyResell(), 'id', 'name'),
                         'hideSearch' => true,
@@ -70,7 +70,7 @@ if(!empty($cur_cat)){
                         ],
                     ])->label('Тип жилья'); ?>
                 </div>
-                <div id="type" class="filter_element col-sm-3 side_left" style="display: <?=$type?>">
+                <div id="type" class="filter_element col-sm-4 side_left" style="display: <?=$type?>">
                     <?= $form->field($model, 'type')->widget(Select2::classname(), [
                         'data' => \yii\helpers\ArrayHelper::map(RealtyArrays::homeTypes(), 'id', 'name'),
                         'hideSearch' => true,
@@ -80,7 +80,7 @@ if(!empty($cur_cat)){
                         ],
                     ])->label('Тип строения'); ?>
                 </div>
-                <div id="repair" class="filter_element col-sm-3 side_left" style="display: <?=$repair?>">
+                <div id="repair" class="filter_element col-sm-4 side_left" style="display: <?=$repair?>">
                     <?= $form->field($model, 'repair')->widget(Select2::classname(), [
                         'data' => \yii\helpers\ArrayHelper::map(RealtyArrays::realtyRepair(), 'id', 'name'),
                         'hideSearch' => true,
@@ -90,7 +90,7 @@ if(!empty($cur_cat)){
                         ],
                     ])->label('Состояние ремонта'); ?>
                 </div>
-                <div id="cost" class="filter_element col-sm-3 side_left">
+                <div id="cost" class="filter_element col-sm-4 side_left">
                     <label class="control-label" for="el-cost">Стоимость объекта (руб):</label>
                     <table id="el-cost">
                         <tr>
@@ -99,7 +99,7 @@ if(!empty($cur_cat)){
                         </tr>
                     </table>
                 </div>
-                <div id="distance" class="filter_element col-sm-3 side_left" style="display: <?=$distance?>">
+                <div id="distance" class="filter_element col-sm-4 side_left" style="display: <?=$distance?>">
                     <label class="control-label" for="el-distance">Удаленность от города (км):</label>
                     <table id="el-distance">
                         <tr>
@@ -108,7 +108,7 @@ if(!empty($cur_cat)){
                         </tr>
                     </table>
                 </div>
-                <div id="area_home" class="filter_element col-sm-3 side_left" style="display: <?=$area_home?>">
+                <div id="area_home" class="filter_element col-sm-4 side_left" style="display: <?=$area_home?>">
                     <label class="control-label" for="el-area">Площадь объекта (м2):</label>
                     <table id="el-area">
                         <tr>
@@ -117,7 +117,7 @@ if(!empty($cur_cat)){
                         </tr>
                     </table>
                 </div>
-                <div id="area_land" class="filter_element col-sm-3 side_left" style="display: <?=$area_land?>">
+                <div id="area_land" class="filter_element col-sm-4 side_left" style="display: <?=$area_land?>">
                     <label class="control-label" for="el-area_land">Площадь участка (сотка):</label>
                     <table id="el-area_land">
                         <tr>
@@ -126,7 +126,7 @@ if(!empty($cur_cat)){
                         </tr>
                     </table>
                 </div>
-                <div id="floor" class="filter_element col-sm-3 side_left" style="display: <?=$floor?>">
+                <div id="floor" class="filter_element col-sm-4 side_left" style="display: <?=$floor?>">
                     <label class="control-label" for="el-floor">Этаж:</label>
                     <table id="el-floor">
                         <tr>
@@ -135,8 +135,8 @@ if(!empty($cur_cat)){
                         </tr>
                     </table>
                 </div>
-                <div id="floor_home" class="filter_element col-sm-3 side_left" style="display: <?=$floor_home?>">
-                    <label class="control-label" for="el-floor_home">Этажей в доме(строении):</label>
+                <div id="floor_home" class="filter_element col-sm-4 side_left" style="display: <?=$floor_home?>">
+                    <label class="control-label" for="el-floor_home">Этажей в доме (строении):</label>
                     <table id="el-floor_home">
                         <tr>
                             <td><?= $form->field($model, 'floor_home_min', ['inputOptions' => ['class' => 'form-control', 'placeholder' => 'от']])->label(false) ?></td>
