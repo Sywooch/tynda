@@ -30,7 +30,7 @@ if (!empty($first_child)) {
                 <span class="input-group-btn"><?= Html::submitButton('<i class="fa fa-search"></i>&nbsp;&nbsp;Найти', ['class' => 'btn-u']) ?></span>
             </div>
         </div>
-        <?php if ($data) { ?>
+        <?php/* if ($data) { ?>
             <div class="filter_element col-sm-6 side_left">
                 <?= $form->field($model, 'cat')->widget(Select2::classname(), [
                     'data' => $data,
@@ -41,8 +41,8 @@ if (!empty($first_child)) {
                     ],
                 ])->label('Подкатегория'); ?>
             </div>
-        <?php } ?>
-        <div class="filter_element col-sm-3 side_left">
+        <?php }*/ ?>
+        <div class="filter_element col-sm-4 side_left">
             <label class="control-label" for="el-salary">Стоимость:</label>
             <table id="el-salary">
                 <tr>
