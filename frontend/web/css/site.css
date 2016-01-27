@@ -960,7 +960,7 @@ ul.sorter > li a{
     width: 100%;
     padding-bottom: 0.6em;
     position: relative;
-    border-bottom: 1px dashed #505050;
+   /* border-bottom: 1px dashed #505050;*/
 }
 .title-border.title-bg.dark, .title-bg-line.dark::after, .title-underblock.dark::after {
     background-color: #820000;

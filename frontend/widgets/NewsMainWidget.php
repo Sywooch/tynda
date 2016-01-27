@@ -37,12 +37,12 @@ class NewsMainWidget extends Widget
         if (is_array($news) && !empty($news)) {
             echo '<table class="main-table">';
             echo '<th colspan="2">';
-                    echo '<span class="title-underblock title-bottom-border dark">Новости</span>';
+                    echo '<span class="title-underblock title-bottom-border dark"></span>';
             echo '</th>';
             foreach ($news as $item) {
                 echo '<tr>';
                 $path = '/news/news/view';
-                echo '<td class="news-img" style="padding: 7px; width: 120px;">';
+                echo '<td class="news-img" style="padding: 7px 0px 7px 10px; width: 115px;">';
                 echo Html::a(Avatar::imgNews($item['thumbnail'],'95px; border: 1px solid #c6c6c6; padding: 1px;'), [$path, 'id' => $item['alias']]);
                 echo '</td>';
                 echo '<td style="padding: 10px 10px 10px 0px;">';

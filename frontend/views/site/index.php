@@ -13,7 +13,7 @@ $images = \common\models\slider\SliderMain::find()->asArray()->all();
 			<div class="col-md-7 side_left">
 				<?php frontend\widgets\NewsMainWidget::show(); ?>
 			</div>
-			<div class="col-md-5">
+			<div class="col-md-5" style="margin-top: 12px;">
 				<?= \frontend\widgets\SliderOnMain::run($path, $images, '100%'); ?>
 			</div>
 		</div>
