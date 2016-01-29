@@ -39,10 +39,10 @@ class RealtyRentMainWidget extends Widget
             foreach ($realty as $item) {
                 echo '<tr>';
                 $path = '/realty/rent/view';
-                echo '<td class="table-img" style="padding: 10px;">';
+                echo '<td class="table-img">';
                 echo Html::a(Avatar::imgRealtyRent($item['main_img'],'80px; border: 1px solid #c6c6c6; padding: 1px;'), [$path, 'id' => $item['id']]);
                 echo '</td>';
-                echo '<td style="padding: 10px;">';
+                echo '<td>';
                 echo Html::a($item['name'], [$path, 'id' => $item['id']], ['class' => '', 'style' => 'margin-left: 0px;', 'title' => 'Подробнее']);
                 if($item['cost'] != ''){
                     echo '<br><i class="small-text" style="margin-right: 5px;">Цена:</i><strong class="cost">'.number_format($item['cost'],2,',',' ').'</strong><i class="small-text" style="margin-left: 2px;">руб.</i>';

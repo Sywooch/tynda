@@ -910,6 +910,10 @@ ul.sorter > li a{
     border-bottom-right-radius: 2px !important;
 }
 
+.site-index .container-fluid{
+    margin-top: 15px;
+}
+
 .main-table{
     width: 100%;
 }
@@ -921,12 +925,28 @@ ul.sorter > li a{
     font-size: 1.3em;
     font-style: normal;
     font-weight: 600;
-    padding: 4px 5px 6px 10px;
+    padding: 4px 0px 6px 0px;
 }
 .main-table tr:first-child:hover{
      border-bottom: none !important;
      background-color: transparent !important;
 }
+
+.main-table td{
+    padding: 5px 0px 5px 0px;
+}
+
+.main-table.news td{
+    padding: 0px;
+    padding-bottom: 10px !important;
+}
+
+
+.main-table.news tr:hover{
+    border-bottom: none !important;
+    background-color: transparent !important;
+}
+
 
 .main-table tr{
 }
@@ -960,7 +980,7 @@ ul.sorter > li a{
     width: 100%;
     padding-bottom: 0.6em;
     position: relative;
-   /* border-bottom: 1px dashed #505050;*/
+    border-bottom: 1px solid #505050;
 }
 .title-border.title-bg.dark, .title-bg-line.dark::after, .title-underblock.dark::after {
     background-color: #820000;

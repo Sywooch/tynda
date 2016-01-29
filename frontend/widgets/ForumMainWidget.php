@@ -45,10 +45,10 @@ class ForumMainWidget extends Widget
             foreach ($forum as $item) {
                 echo '<tr>';
                 $path = '/forum/forum/theme';
-                echo '<td class="table-img" style="padding: 10px;">';
+                echo '<td class="table-img">';
                 echo Html::a(Avatar::userAvatar($item['idAuthor']['avatar'],'80px; border: 1px solid #c6c6c6; padding: 1px;'), [$path, 'id' => $item['idTheme']['alias']]);
                 echo '</td>';
-                echo '<td style="padding: 10px;">';
+                echo '<td>';
                 echo Html::a(substr($item['message'],0,128) . ' ...', [$path, 'id' => $item['idTheme']['alias']], ['class' => '', 'style' => 'margin-left: 0px;', 'title' => 'Подробнее']);
                 echo '<br><i class="small-text" >Тема:</i> '. Html::a($item['idTheme']['name'],['/forum/forum/theme/','id'=>$item['idTheme']['alias']]);
                 echo '<br><i class="small-text" >Категория:</i> '. Html::a($item['idCat']['name'],['/forum/forum/category/','id'=>$item['idCat']['alias']]);

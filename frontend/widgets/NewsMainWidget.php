@@ -35,17 +35,17 @@ class NewsMainWidget extends Widget
             ->limit($count_item)
             ->all();
         if (is_array($news) && !empty($news)) {
-            echo '<table class="main-table">';
-            echo '<th colspan="2">';
-                    echo '<span class="title-underblock title-bottom-border dark"></span>';
-            echo '</th>';
+            echo '<table class="main-table news">';
+           // echo '<th colspan="2">';
+           //         echo '<span class="title-underblock title-bottom-border dark"></span>';
+          // echo '</th>';
             foreach ($news as $item) {
                 echo '<tr>';
                 $path = '/news/news/view';
-                echo '<td class="news-img" style="padding: 7px 0px 7px 10px; width: 115px;">';
+                echo '<td class="news-img" style="padding: 0px; width: 115px;">';
                 echo Html::a(Avatar::imgNews($item['thumbnail'],'95px; border: 1px solid #c6c6c6; padding: 1px;'), [$path, 'id' => $item['alias']]);
                 echo '</td>';
-                echo '<td style="padding: 10px 10px 10px 0px;">';
+                echo '<td style="padding: 0px;">';
                 echo Html::a($item['title'], [$path, 'id' => $item['alias']], ['class' => '', 'style' => 'margin-left: 0px;', 'title' => 'Подробнее']);
                 echo '<br><i class="small-text" >Категория:</i> '. Html::a($item['cat']['name'],['/news/news/index/','cat'=>$item['cat']['alias']]);
                 echo '<ul class="list-inline"><li class="tag-sign" style="margin-right: 5px;">Теги: </li>';

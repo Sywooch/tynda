@@ -13,7 +13,7 @@ $images = \common\models\slider\SliderMain::find()->asArray()->all();
 			<div class="col-md-7 side_left">
 				<?php frontend\widgets\NewsMainWidget::show(); ?>
 			</div>
-			<div class="col-md-5" style="margin-top: 12px;">
+			<div class="col-md-5">
 				<?= \frontend\widgets\SliderOnMain::run($path, $images, '100%'); ?>
 			</div>
 		</div>
@@ -22,19 +22,36 @@ $images = \common\models\slider\SliderMain::find()->asArray()->all();
 		<div class="row">
 			<div class="col-md-4 side_left" style="margin-top: 10px;">
 				<?= \frontend\widgets\ForumMainWidget::show(); ?>
-				<?= \frontend\widgets\GoodsMainWidget::show(); ?>
-				<?= \frontend\widgets\RealtySaleMainWidget::show(); ?>
-
 			</div>
 			<div class="col-md-4 side_left" style="margin-top: 10px;">
 				<?= \frontend\widgets\LettersMainWidget::show(); ?>
-				<?= \frontend\widgets\ServiceMainWidget::show(); ?>
-				<?= \frontend\widgets\RealtyRentMainWidget::show(); ?>
 			</div>
 			<div class="col-md-4" style="margin-top: 10px;">
 				<?= \frontend\widgets\AfishaMainWidget::show(); ?>
-
-
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4 side_left" style="margin-top: 10px;">
+				<?= \frontend\widgets\GoodsMainWidget::show(); ?>
+			</div>
+			<div class="col-md-4 side_left" style="margin-top: 10px;">
+				<?= \frontend\widgets\ServiceMainWidget::show(); ?>
+			</div>
+			<div class="col-md-4" style="margin-top: 10px;">
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4 side_left" style="margin-top: 10px;">
+				<?= \frontend\widgets\RealtySaleMainWidget::show(); ?>
+			</div>
+			<div class="col-md-4 side_left" style="margin-top: 10px;">
+				<?= \frontend\widgets\RealtyRentMainWidget::show(); ?>
+			</div>
+			<div class="col-md-4" style="margin-top: 10px;">
 			</div>
 		</div>
 	</div>
@@ -43,8 +60,6 @@ $images = \common\models\slider\SliderMain::find()->asArray()->all();
 
 		</div>
 	</div>
-
-
 
 
 </div>

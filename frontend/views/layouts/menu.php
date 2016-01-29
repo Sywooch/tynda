@@ -22,7 +22,7 @@ $menuItems = [
     ['label' => 'Хобби', 'url' => ['/service/category/hobby'], 'options' => ['class' => 'main_menu_li']],
     ['label' => 'Афиша', 'url' => ['/afisha/afisha/index'], 'options' => ['class' => 'main_menu_li']],
     //['label' => 'Коллективные письма', 'url' => ['/site/in-work'], 'options' => ['class' => 'main_menu_li']],
-    ['label' => 'Авто', 'url' => ['/site/in-work'], 'options' => ['class' => 'main_menu_li']],
+   // ['label' => 'Авто', 'url' => ['/site/in-work'], 'options' => ['class' => 'main_menu_li']],
     ['label' => 'Недвижимость', 'options' => ['class' => 'main_menu_li'], 'items' => [
         ['label' => 'Продажа', 'url' => ['/realty/sale/index']],
         ['label' => 'Аренда', 'url' => ['/realty/rent/index']],
@@ -60,16 +60,16 @@ $li = (100 / $count) - 0.01;
         <div class="navbar-header" style="margin: 15px 0px; width: 100%;">
             <div class="row">
 
-                <div class="col-sm-2 side_left" style="min-height: 80px;">
+                <div class="col-md-2 side_left" style="min-height: 80px;">
                     <a class="navbar-brand" href="/" style="margin: 0px; padding: 0px;">
                         <?= Html::img(Url::to('@frt_url/img/logo.png'), ['id' => 'logo-header', 'style' => 'height:80px;', 'alt' => 'Logo']) ?>
                     </a>
                 </div>
-                <div class="col-sm-4 side_left" style="min-height: 80px;">
+                <div class="col-md-4 side_left" style="min-height: 80px;">
 
                 </div>
 
-                <div class="col-sm-3 side_left" style="min-height: 80px;">
+                <div class="col-md-3 side_left" style="min-height: 80px;">
                     <div style="display: block; content: ' '; width: 282px; float: right; margin: 7px 0px;">
                         <div style="border: 1px solid #c0c0c0; padding: 3px;">
                             <div  style="padding: 0px 0px 0px 0px; display: inline-block; vertical-align: top;" class="rsb_courses" data-params="font=arial&c_base=RUB&c_1=USD&c_2=EUR&style=gray&bg=ECF0F1&fc=9da2a6&bg2=ffffff&fc2=999999&type=4&angle=0&c=1"></div>
@@ -82,9 +82,9 @@ $li = (100 / $count) - 0.01;
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3" style="min-height: 80px; padding-top: 7px;">
-                    <?= Html::a('<span class="icon-envelope-letter" style="padding-right: 10px;" aria-hidden="true"></span>Коллективные письма', ['/letters/letters/index'], ['class' => 'btn-u btn-brd', 'style' => 'margin-bottom:4px; display: block; text-align: center; color:#7E0000;']) ?>
-                    <?= Html::a('<span class="icon-bell" style="padding-right: 10px;" aria-hidden="true"></span>Предложить письмо', ['/letters/letters/create'], ['class' => 'btn-u btn-brd', 'style' => 'margin-bottom:5px; display: block; text-align: center; color:#7E0000;']) ?>
+                <div class="col-md-3" style="min-height: 80px; padding-top: 7px;">
+                    <?= Html::a('<span style="display: block; margin-top: 18px;"><span class="icon-envelope-letter" style="padding-right: 10px;" aria-hidden="true"></span>Коллективные письма</span>', ['/letters/letters/index'], ['class' => 'btn-u btn-brd', 'style' => 'margin-bottom:4px; display: block; height:73px; text-align: center; color:#7E0000;']) ?>
+                    <?//= Html::a('<span class="icon-bell" style="padding-right: 10px;" aria-hidden="true"></span>Предложить письмо', ['/letters/letters/create'], ['class' => 'btn-u btn-brd', 'style' => 'margin-bottom:5px; display: block; text-align: center; color:#7E0000;']) ?>
                 </div>
 
             </div>

@@ -42,10 +42,10 @@ class AfishaMainWidget extends Widget
             foreach ($afisha as $item) {
                 echo '<tr>';
                 $path = '/afisha/afisha/view';
-                echo '<td class="table-img" style="padding: 10px;">';
+                echo '<td class="table-img">';
                 echo Html::a(Avatar::imgAfisha($item['thumbnail'],'111px; border: 1px solid #c6c6c6; padding: 1px;'), [$path, 'id' => $item['alias']]);
                 echo '</td>';
-                echo '<td style="padding: 10px;">';
+                echo '<td>';
                 echo Html::a($item['title'], [$path, 'id' => $item['alias']], ['class' => '', 'style' => 'margin-left: 0px;', 'title' => 'Подробнее']);
                 echo '<br><i class="small-text" >Категория:</i> '. Html::a($item['cat']['name'],['/afisha/afisha/index/','cat'=>$item['cat']['alias']]);
                 echo '<ul class="list-inline"><li class="tag-sign" style="margin-right: 5px;">Теги: </li>';
