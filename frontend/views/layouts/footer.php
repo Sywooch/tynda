@@ -5,9 +5,8 @@
             <div class="row">
                 <!-- About -->
                 <div class="col-md-3 md-margin-bottom-40">
-                    <a href="index.html"><!--<img id="logo-footer" class="footer-logo" src="assets/img/logo2-default.png" alt="">--></a>
-                    <p>Городской портал НАША ТЫНДА.</p>
-                    <p>Создан специально для Вас.</p>
+                    <div class="headline"><h2>НАША ТЫНДА</h2></div>
+                    <p>Городской портал Наша Тында,<br> создан специально для Вас.</p>
                 </div><!--/col-md-3-->
                 <!-- End About -->
 

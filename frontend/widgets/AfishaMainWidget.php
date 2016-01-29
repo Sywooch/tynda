@@ -43,7 +43,7 @@ class AfishaMainWidget extends Widget
                 echo '<tr>';
                 $path = '/afisha/afisha/view';
                 echo '<td class="table-img">';
-                echo Html::a(Avatar::imgAfisha($item['thumbnail'],'111px; border: 1px solid #c6c6c6; padding: 1px;'), [$path, 'id' => $item['alias']]);
+                echo Html::a(Avatar::imgAfisha($item['thumbnail'],'80px; border: 1px solid #c6c6c6; padding: 1px;'), [$path, 'id' => $item['alias']]);
                 echo '</td>';
                 echo '<td>';
                 echo Html::a($item['title'], [$path, 'id' => $item['alias']], ['class' => '', 'style' => 'margin-left: 0px;', 'title' => 'Подробнее']);
