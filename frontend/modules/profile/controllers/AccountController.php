@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use common\helpers\YandexKassaSettings as Settings;
+use app\modules\profile\yandex\YaMoneyCommonHttpProtocol;
 /**
  * AccountController implements the CRUD actions for UserAccount model.
  */
@@ -19,10 +21,10 @@ class AccountController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','pay','confirm','view','falue'],
+                'only' => ['index','pay','success','view','fail','check-order','payment-aviso'],
                 'rules' => [
                     [
-                        'actions' => ['index','pay','confirm','view','falue'],
+                        'actions' => ['index','pay','success','view','fail','check-order','payment-aviso'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -45,10 +47,11 @@ class AccountController extends Controller
     {
         $searchModel = new UserAccountSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $settings = new Settings();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'settings' => $settings,
         ]);
     }
 
@@ -83,38 +86,26 @@ class AccountController extends Controller
         }
     }
 
-    /**
-     * Updates an existing UserAccount model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
+    public function actionPaymentAviso(){
+        $settings = new Settings();
+        $yaMoneyCommonHttpProtocol = new YaMoneyCommonHttpProtocol("paymentAviso", $settings);
+        $yaMoneyCommonHttpProtocol->processRequest($_REQUEST);
+        exit;
     }
 
-    /**
-     * Deletes an existing UserAccount model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+    public function actionCheckOrder(){
+        $settings = new Settings();
+        $yaMoneyCommonHttpProtocol = new YaMoneyCommonHttpProtocol("checkOrder", $settings);
+        $yaMoneyCommonHttpProtocol->processRequest($_REQUEST);
+        exit;
     }
 
+    public function actionSuccess(){
+        return $this->render('success',[]);
+    }
+    public function actionFail(){
+        return $this->render('fail',[]);
+    }
     /**
      * Finds the UserAccount model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
