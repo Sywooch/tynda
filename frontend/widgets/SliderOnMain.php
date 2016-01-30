@@ -32,6 +32,9 @@ class SliderOnMain extends Widget
                             $image = $_image['thumbnail'];
                             echo '<li data-thumb="'.$path.$image.'">';
                             echo '<img src="'.$path.$image.'" style="width: '.$size.' ;" alt="Фото">';
+                            echo '<div class="slider-main-sign">';
+                            echo '<h2>'.$_image['name'].'</h2>';
+                            echo '<div>';
                             echo '</li>';
                         }
                     echo '</ul>';
@@ -54,6 +57,9 @@ class SliderOnMain extends Widget
             }
         }
         self::registerJs();
+        /*echo '<pre>';
+        print_r($images);
+        echo '<pre>';*/
     }
 
 

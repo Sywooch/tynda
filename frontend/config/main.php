@@ -10,6 +10,17 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+
+    /*'on beforeRequest' => function ($event) {
+        if(!Yii::$app->request->isSecureConnection){
+            // add some filter/exemptions if needed ..
+            $url = Yii::$app->request->getAbsoluteUrl();
+            $url = str_replace('http:', 'https://', $url);
+            Yii::$app->getResponse()->redirect($url);
+            Yii::$app->end();
+        }
+    },*/
+
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'user' => [

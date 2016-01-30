@@ -914,6 +914,24 @@ ul.sorter > li a{
     margin-top: 15px;
 }
 
+
+.slider-main-sign{
+    z-index: 100;
+    display: block;
+    margin-top: -70px;
+    padding: 10px 5px;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+}
+.slider-main-sign h2{
+    margin: 0;
+    padding-left: 15px;
+    font-size: 1em;
+    font-style: italic;
+    color: #fff;
+    text-shadow: 1px 1px 0px #444;
+}
+
 .main-table{
     width: 100%;
 }
