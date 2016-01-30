@@ -12,7 +12,7 @@ $paymentMethod = [
     ['id' => 'AC', 'name' => 'С банковской карты']
 ];
 $methods = \yii\helpers\ArrayHelper::map($paymentMethod, 'id', 'name');
-
+$user = Yii::$app->user->getIdentity();
 ?>
 
 <div class="user-account-form">
@@ -27,11 +27,11 @@ $methods = \yii\helpers\ArrayHelper::map($paymentMethod, 'id', 'name');
     ]); ?>
 
     <!-- Обязательные поля -->
-    <input name="shopId" value="151" type="hidden"/>
+    <input name="shopId" value="<?=$settings->SHOP_ID?>" type="hidden"/>
     <input name="shopArticleId" value="151" type="hidden"/>
     <input name="scid" value="59816" type="hidden"/>
 
-    <input name="customerNumber" value="100500" type="hidden"/>
+    <input name="customerNumber" value="<?= $user->email ?>" type="hidden"/>
 
     <section>
         <label class="control-label" for="paymentType">Внесите сумму в рублях на которую хотите пополнить свой счет</label>
