@@ -10,7 +10,7 @@ namespace app\modules\profile\yandex;
 
 use app\modules\profile\yandex\Utils;
 use app\modules\profile\yandex\Log;
-use common\helpers\YandexKassaSettings as Settings;
+use app\modules\profile\yandex\Settings as Settings;
 use DateTime;
 /**
  * The implementation of payment notification methods.

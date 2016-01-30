@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\helpers\YandexKassaSettings as Settings;
+use app\modules\profile\yandex\Settings as Settings;
 use app\modules\profile\yandex\YaMoneyCommonHttpProtocol;
 /**
  * AccountController implements the CRUD actions for UserAccount model.
