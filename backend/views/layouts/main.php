@@ -44,7 +44,7 @@
 		    ['directoryAsset' => $directoryAsset]
 	    ) ?>
 
-       <!-- <div class="wrapper wrapper-content animated fadeInRight"> -->
+        <div class="wrapper wrapper-content"> <!--  animated fadeInRight -->
             <div class="row">
 	            <div class="container-fluid">
 		            <div style="margin-bottom: 10px; margin-top: 10px;">
@@ -58,7 +58,7 @@
 		            <?= $content ?>
 	            </div>
             </div>
-       <!-- </div> -->
+       </div>
         <div class="footer">
             <div class="pull-right">
                 Панель управления сайта.

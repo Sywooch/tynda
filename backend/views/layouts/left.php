@@ -73,6 +73,21 @@ use yii\bootstrap\NavBar;
 				</ul>
 			</li>
 			<li>
+				<a href="#"><i class="fa fa-optin-monster"></i><span class="nav-label">Работа</span><span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level collapse">
+					<li><?= Html::a('<i class="fa fa-cubes"></i> Категории',['/jobs/category/index']) ?></li>
+					<li><?= Html::a('<i class="fa fa-support"></i> Резюме',['/jobs/resume/index']) ?></li>
+					<li><?= Html::a('<i class="fa fa-subway"></i> Вакансии',['/jobs/vacancy/index']) ?></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#"><i class="fa fa-ambulance"></i><span class="nav-label">Врачи</span><span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level collapse">
+					<li><?= Html::a('<i class="fa fa-medkit"></i> Специальности',['/med/spec/index']) ?></li>
+					<li><?= Html::a('<i class="fa fa-user-md"></i> Врачи',['/med/doctors/index']) ?></li>
+				</ul>
+			</li>
+			<li>
 				<a href="#"><i class="fa fa-shopping-cart"></i><span class="nav-label">Товары</span><span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
 					<li><?= Html::a('<i class="fa fa-cubes"></i> Категории товаров',['/goods/goods-category/index']) ?></li>
