@@ -100,6 +100,7 @@ class RealtyRent extends \yii\db\ActiveRecord
                 'extensions' => ['jpg', 'jpeg', 'png', 'gif'],
                 'mimeTypes' => ['image/jpeg', 'image/pjpeg', 'image/png', 'image/gif'],
                 'maxFiles' => Arrays::IMG_COUNT,
+                'maxSize' => Arrays::IMG_MAX_SIZE, 'maxWidth' => Arrays::IMG_MAX_WIDTH, 'maxHeight' => Arrays::IMG_MAX_HEIGHT,
             ],
             ['verifyCode', 'captcha', 'on' => 'create'],
         ];

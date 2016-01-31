@@ -17,6 +17,9 @@ use common\models\users\User;
 class Arrays
 {
     const IMG_COUNT = 10;
+    const IMG_MAX_SIZE =  1048576; // = (1024 * 1024 * 1); // 1MB
+    const IMG_MAX_HEIGHT = 640;
+    const IMG_MAX_WIDTH = 480;
 
     public static function comp(){
         return [
