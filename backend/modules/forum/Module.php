@@ -1,11 +1,26 @@
 <?php
 
 namespace app\modules\forum;
+use app\modules\rbac\components\AccessControl;
 
 class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'app\modules\forum\controllers';
 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+        ];
+    }
     public function init()
     {
         parent::init();

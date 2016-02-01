@@ -2,9 +2,26 @@
 
 namespace app\modules\users;
 
+use app\modules\rbac\components\AccessControl;
+
 class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'app\modules\users\controllers';
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+        ];
+    }
 
     public function init()
     {

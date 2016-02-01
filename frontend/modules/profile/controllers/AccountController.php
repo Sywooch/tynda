@@ -76,12 +76,14 @@ class AccountController extends Controller
     {
         $model = new UserAccount();
         $user = Yii::$app->user->getIdentity();
+        $settings = new Settings();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('pay', [
                 'model' => $model,
                 'user' => $user,
+                'settings' => $settings,
             ]);
         }
     }

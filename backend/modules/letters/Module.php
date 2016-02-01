@@ -2,7 +2,7 @@
 
 namespace app\modules\letters;
 use Yii;
-
+use app\modules\rbac\components\AccessControl;
 class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'app\modules\letters\controllers';
@@ -15,6 +15,21 @@ class Module extends \yii\base\Module
     public $uploadFile = false;
     public $pathToFiles;
     public $urlToFiles;
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+        ];
+    }
 
     public function init()
     {
