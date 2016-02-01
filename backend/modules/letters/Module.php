@@ -1,8 +1,8 @@
 <?php
-
 namespace app\modules\letters;
 use Yii;
 use app\modules\rbac\components\AccessControl;
+
 class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'app\modules\letters\controllers';
