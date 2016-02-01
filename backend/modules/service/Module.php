@@ -13,13 +13,13 @@ class module extends \yii\base\Module
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                'denyCallback' => function ($rule, $action){
+                    return $action->controller->redirect(['login']);
+                },
                 'rules' => [
                     [
                         'allow' => true,
                         'roles' => ['admin'],
-                        'denyCallback' => function ($rule, $action){
-                            return $this->redirect(['login']);
-                        }
                     ],
                 ],
             ],
