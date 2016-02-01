@@ -26,6 +26,9 @@ class Module extends \yii\base\Module
                     [
                         'allow' => true,
                         'roles' => ['admin'],
+                        'denyCallback' => function ($rule, $action){
+                            return $this->redirect(['login']);
+                        }
                     ],
                 ],
             ],
