@@ -23,7 +23,7 @@ class Module extends \yii\base\Module
             'access' => [
                 'class' => AccessControl::className(),
                 'denyCallback' => function ($rule, $action){
-                    return $action->controller->redirect(['login']);
+                    return $action->controller->redirect(['/login']);
                 },
                 'rules' => [
                     [
