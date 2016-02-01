@@ -34,7 +34,7 @@ class JobCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['parent', 'order'], 'integer'],
+            [['parent', 'order','status'], 'integer'],
             [['name'], 'string', 'max' => 50],
             [['description', 'm_keyword', 'm_description'], 'string', 'max' => 255]
         ];
@@ -49,7 +49,8 @@ class JobCategory extends \yii\db\ActiveRecord
             'id' => 'ID',
             'parent' => 'Parent',
             'order' => 'Порядок',
-            'name' => 'Категория',
+            'status' => 'Статус',
+            'name' => 'Cфера деятельности',
             'description' => 'Описание',
             'm_keyword' => 'Ключевые слова',
             'm_description' => 'Мета описание',

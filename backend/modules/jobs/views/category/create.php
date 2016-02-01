@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\jobs\JobCategory */
 
-$this->title = 'Create Job Category';
-$this->params['breadcrumbs'][] = ['label' => 'Job Categories', 'url' => ['index']];
+$this->title = 'Создание новой сферы деятельности';
+$this->params['breadcrumbs'][] = ['label' => 'Сферы деятельности', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="job-category-create">
