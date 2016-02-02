@@ -62,7 +62,7 @@ $li = (100 / $count) - 0.01;
 
                 <div class="col-md-2 side_left" style="min-height: 80px;">
                     <a class="navbar-brand" href="/" style="margin: 0px; padding: 0px;">
-                        <?= Html::img(Url::to('@frt_url/img/logo.png'), ['id' => 'logo-header', 'style' => 'height:80px;', 'alt' => 'Logo']) ?>
+                        <?= Html::img(Url::to('@frt_url/img/logo_2.png'), ['id' => 'logo-header', 'style' => 'height:80px;', 'alt' => 'Logo']) ?>
                     </a>
                 </div>
                 <div class="col-md-4 side_left" style="min-height: 80px;">
