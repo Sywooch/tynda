@@ -78,6 +78,7 @@ $li = (100 / $count) - 0.01;
                                 <img src="//w.bookcdn.com/weather/picture/26_w438247_1_20_ecf0f1_250_bdc3c7_9da2a6_ffffff_1_2071c9_ffffff_0_3.png?scode=2&domid=589" />
                             </a>
                             <!-- weather widget end -->
+                            <span class="rsb_courses" data-params="font=arial&c_base=RUB&c_1=USD&c_2=EUR&style=light&bg=#BDC3C7&fc=#9DA2A6&bg2=#ECF0F1&fc2=#9DA2A6&type=4&angle=0&c=1"></span>
                             <script type="text/javascript" src="//rossbanki.ru/js/rsb_c.js"></script>
                         </div>
                     </div>
