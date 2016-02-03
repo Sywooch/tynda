@@ -2,6 +2,7 @@
 
 namespace app\modules\jobs\controllers;
 
+use common\models\CommonQuery;
 use common\models\jobs\JobCategory;
 use common\models\jobs\JobCatVac;
 use common\models\jobs\JobVacancy;
@@ -375,9 +376,12 @@ class VacancyController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        $item = $this->findModel($id);
+        $user = Yii::$app->user->identity;
+        if($user->id == $item->id_user){
+            CommonQuery::deleteItem($item);
+        }
+        return $this->redirect(['my-vacancy']);
     }
 
     /**

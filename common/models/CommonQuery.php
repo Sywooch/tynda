@@ -21,17 +21,19 @@ class CommonQuery extends ActiveRecord
 	 * @param string $img_path
 	 * @return mixed
 	 */
-	public static function deleteItem($item, $img_path)
+	public static function deleteItem($item, $img_path = null)
 	{
-		$dir = Yii::getAlias($img_path);
-		if(is_dir($dir)){
-			$images = FileHelper::findFiles($dir, [
-				'only' => [
-					$item->main_img,
-				],
-			]);
-			for ($n = 0; $n != count($images); $n++) {
-				@unlink($images[$n]);
+		if($img_path != null){
+			$dir = Yii::getAlias($img_path);
+			if(is_dir($dir)){
+				$images = FileHelper::findFiles($dir, [
+					'only' => [
+						$item->main_img,
+					],
+				]);
+				for ($n = 0; $n != count($images); $n++) {
+					@unlink($images[$n]);
+				}
 			}
 		}
 		//delete row from database
