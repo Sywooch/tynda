@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $rcat = Arrays::getResumeCat($res['id']);
 
 //Вычисляем возраст человека по его дню рождения
-$now = new \DateTimeImmutable();
+$now = new DateTime(date('Y-m-d'));
 $vip_date = new DateTime($user['profile']['birthday']);
 $_period = date_diff($now, $vip_date);
 $period = $_period->y;

@@ -77,10 +77,12 @@ class AccountController extends Controller
         $model = new UserAccount();
         $user = Yii::$app->user->getIdentity();
         $settings = new Settings();
+        $orderNumber = 'PAY_'.$user['id'].'_'.time();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('pay', [
+                'orderNumber' => $orderNumber,
                 'model' => $model,
                 'user' => $user,
                 'settings' => $settings,
@@ -90,16 +92,14 @@ class AccountController extends Controller
 
     public function actionPaymentAviso(){
         $settings = new Settings();
-        $yaMoneyCommonHttpProtocol = new YaMoneyCommonHttpProtocol("paymentAviso", $settings);
-        $yaMoneyCommonHttpProtocol->processRequest($_REQUEST);
-        exit;
+        $yaMoneyCommonHttpProtocol = new YaMoneyCommonHttpProtocol($settings);
+        print $yaMoneyCommonHttpProtocol->paymentAviso(Yii::$app->request->post());
     }
 
     public function actionCheckOrder(){
         $settings = new Settings();
-        $yaMoneyCommonHttpProtocol = new YaMoneyCommonHttpProtocol("checkOrder", $settings);
-        $yaMoneyCommonHttpProtocol->processRequest($_REQUEST);
-        exit;
+        $yaMoneyCommonHttpProtocol = new YaMoneyCommonHttpProtocol($settings);
+        print $yaMoneyCommonHttpProtocol->checkOrder(Yii::$app->request->post());
     }
 
     public function actionSuccess(){
