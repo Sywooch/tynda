@@ -26,8 +26,7 @@ class YaMoneyCommonHttpProtocol {
 	}
 
 	/**
-	 * CheckOrder request processing. We suppose there are no item with price less
-	 * than 30 rubles in the shop.
+	 * CheckOrder request processing.
 	 * @param  array $request payment parameters
 	 * @return string prepared XML response
 	 */

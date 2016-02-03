@@ -10,6 +10,8 @@ namespace common\models;
 
 
 use yii\db\ActiveRecord;
+use Yii;
+use yii\helpers\FileHelper;
 
 class CommonQuery extends ActiveRecord
 {

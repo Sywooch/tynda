@@ -218,7 +218,6 @@ class LettersController extends Controller
     {
         //delete images
         $model = $this->findModel($id);
-        $id_letters = $model->id;
         $dir = Yii::getAlias('@frt_dir/img/letters/');
 	    if(is_dir($dir)){
 	        $images = FileHelper::findFiles($dir, [
@@ -230,12 +229,9 @@ class LettersController extends Controller
 	        for ($n = 0; $n != count($images); $n++) {
 	            @unlink($images[$n]);
 	        }
-	        //delete directory
-			//rmdir($dir);
 	    }
-
         //delete row from database
-        if ($this->findModel($id)->delete()) {
+        if ($model->delete()) {
             Yii::$app->session->setFlash('success', 'Письмо успешно удалено.');
         }
         return $this->redirect(['index']);

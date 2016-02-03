@@ -181,7 +181,7 @@ class RentController extends Controller
             if($model->delete()){
                 return $this->redirect(['my-ads']);
             }else{
-                \Yii::$app->session->setFlash('danger', 'Объявление не было удалено.<br>$model->delete() не сработал.');
+                \Yii::$app->session->setFlash('danger', 'Объявление не было удалено.');
             }
         }else{
             \Yii::$app->session->setFlash('danger', 'По каким-то причинам объявление не было удалено.<br>Пожалуйста повторите попытку.');

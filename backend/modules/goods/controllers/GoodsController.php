@@ -2,6 +2,8 @@
 
 namespace app\modules\goods\controllers;
 
+use common\models\CommonQuery;
+use common\models\goods\GoodsQuery;
 use Yii;
 use common\models\goods\Goods;
 use app\modules\goods\models\GoodsSearch;
@@ -122,8 +124,8 @@ class GoodsController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $item = Goods::findOne($id);
+        CommonQuery::deleteItem($item,'@frt_dir/img/goods');
         return $this->redirect(['index']);
     }
 

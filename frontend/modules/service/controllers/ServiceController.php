@@ -3,6 +3,7 @@
 namespace app\modules\service\controllers;
 
 use Yii;
+use common\models\CommonQuery;
 use common\models\service\Service;
 use common\models\service\ServiceCat;
 use common\models\service\ServiceSearch;
@@ -28,10 +29,10 @@ class ServiceController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['change-status','change-up','change-vip','my-ads','create','update'],
+                'only' => ['change-status','change-up','change-vip','my-ads','create','update','delete'],
                 'rules' => [
                     [
-                        'actions' => ['change-status','change-up','change-vip','my-ads','create','update'],
+                        'actions' => ['change-status','change-up','change-vip','my-ads','create','update','delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -203,6 +204,22 @@ class ServiceController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    /**
+     * Deletes an existing Service model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param string $id
+     * @return mixed
+     */
+    public function actionDelete($id)
+    {
+        $user = Yii::$app->user->identity;
+        $item = Service::findOne($id);
+        if($user->id == $item->id_user){
+            CommonQuery::deleteItem($item,'@frt_dir/img/service');
+        }
+        return $this->redirect(['my-ads']);
     }
 
     /**
