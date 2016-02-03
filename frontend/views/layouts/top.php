@@ -39,7 +39,7 @@ $this->registerJsFile('https://cdn.jsdelivr.net/jquery.goodshare.js/3.2.4/goodsh
                         <li><?= Html::a('Регистрация',[Url::home().'site/signup']) ?></li>
                         <li><?= Html::a('Войти',[Url::home().'site/login']) ?></li>
                     <?php }else{ ?>
-                        <li><?= Html::a(Avatar::init().'&nbsp;&nbsp;в мой профиль',[Url::home().'profile/index'],['style'=>'']) ?></li>
+                        <li><?= Html::a(Avatar::init().'&nbsp;&nbsp;в личный кабинет',[Url::home().'profile/index'],['style'=>'']) ?></li>
                         <li>Вы вошли как: &nbsp;<?= Yii::$app->user->identity->username ?></li>
                         <li><?= Html::a('Выйти',[Url::home().'site/logout']) ?></li>
                     <?php } ?>
