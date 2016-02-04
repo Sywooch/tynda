@@ -14,7 +14,7 @@ $paymentMethod = [
 ];
 $methods = \yii\helpers\ArrayHelper::map($paymentMethod, 'id', 'name');
 $user = Yii::$app->user->getIdentity();
-
+$this->title = 'Пополнение баланса';
 ?>
 
 <div class="user-account-form">
@@ -25,49 +25,36 @@ $user = Yii::$app->user->getIdentity();
 		'id' => 'payment_form',
 		'options' => [
 			'class' => '',
-			//'target' => '_blank',
 		],
 	]); ?>
-	<pre>
-    <?php print_r(Yii::$app->request->post()) ?>
-    </pre>
-	<!-- ОБЯЗАТЕЛЬНАНЫЕ ПОЛЯ (все параметры яндекс.кассы регистрозависимые) -->
+
 	<input type="hidden" name="shopId" value="<?= $settings->SHOP_ID ?>">
-	<!--<input name="shopArticleId" value="<?= $settings->SHOP_ID ?>" type="hidden"/> -->
 	<input type="hidden" name="scid" value="<?= $settings->SCID ?>">
 	<input type="hidden" name="customerNumber" size="64" value="<?= $user->id ?>"><br><br>
-
-	<section>
-		<label class="control-label" for="paymentType">Внесите сумму в рублях на которую хотите пополнить свой счет (руб.):</label>
-		<?= Html::textInput('sum', 100, ['id' => 'sum', 'class' => 'form-control']) ?>
-	</section>
-	<!-- CustomerNumber -- до 64 символов; идентификатор плательщика в ИС Контрагента.
-	В качестве идентификатора может использоваться номер договора плательщика, логин плательщика и т.п.
-	Возможна повторная оплата по одному и тому же идентификатору плательщика.
-
-	sum -- сумма заказа в рублях.
-	-->
-
-	<!-- необязательные поля (все параметры яндекс.кассы регистрозависимые) -->
 	<input name="orderNumber" value="<?= $orderNumber ?>" type="hidden"/>
 	<input name="cps_phone" value="<?= $user->tel ?>" type="hidden"/>
 	<input name="cps_email" value="<?= $user->email ?>" type="hidden"/>
+	<div class="row">
+		<div class="col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3 shadow-wrapper">
+			<div class="tag-box tag-box-v1 box-shadow shadow-effect-2">
+				<h1>Пополнение баланса</h1>
+				<div class="form-group">
+					<label class="control-label" for="paymentType">Выберите способ оплаты</label>
+					<?= Html::dropDownList('paymentType', '', $methods, ['id' => 'paymentType', 'class' => 'form-control']) ?>
+				</div>
 
-	<!-- Внимание! Для тестирования в ДЕМО-среде доступны только два метода оплаты: тестовый Яндекс.Кошелек и Тестовая банковская карта
-	-->
+				<label class="control-label" for="paymentType">Внесите сумму в рублях на которую хотите пополнить свой счет (руб.):</label>
+				<div class="input-group">
+					<?= Html::textInput('sum', 50, ['id' => 'sum', 'class' => 'form-control']) ?>
+					<span class="input-group-btn">
+							<?= Html::submitButton('Оплатить', ['class' => 'btn btn-primary']) ?>
+					</span>
+				</div>
 
-	<section>
-		<label class="control-label" for="paymentType">Выберите способ оплаты</label>
-		<?= Html::dropDownList('paymentType', '', $methods, ['id' => 'paymentType', 'class' => 'form-control']) ?>
-	</section>
-
-
-	<!--<input type="hidden" name="rebillingOn" value="true">-->
-	<br>
-
-	<div class="form-group">
-		<?= Html::submitButton('Оплатить', ['class' => 'btn btn-primary']) ?>
+			</div>
+		</div>
 	</div>
+
 
 	<?php ActiveForm::end(); ?>
 

@@ -45,9 +45,9 @@ class UserAccountSearch extends UserAccount
     public function search($params, $in_out)
     {
         if($in_out == 'in'){
-            $query = UserAccount::find()->andWhere(['IS NOT','pay_in', NULL])->orderBy('date DESC');
+            $query = UserAccount::find()->andWhere(['id_user'=>\Yii::$app->user->id])->andWhere(['IS NOT','pay_in', NULL])->orderBy('id DESC');
         }else{
-            $query = UserAccount::find()->andWhere(['IS NOT','pay_out', NULL])->orderBy('date DESC');
+            $query = UserAccount::find()->andWhere(['id_user'=>\Yii::$app->user->id])->andWhere(['IS NOT','pay_out', NULL])->orderBy('id DESC');
         }
 
 

@@ -21,10 +21,10 @@ class AccountController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','pay','success','view','fail','check-order','payment-aviso'], //
+                'only' => ['index','pay','success','fail','check-order','payment-aviso'], //
                 'rules' => [
                     [
-                        'actions' => ['index','pay','success','view','fail'],
+                        'actions' => ['index','pay','success','fail'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -65,18 +65,6 @@ class AccountController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'settings' => $settings,
-        ]);
-    }
-
-    /**
-     * Displays a single UserAccount model.
-     * @param string $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
         ]);
     }
 

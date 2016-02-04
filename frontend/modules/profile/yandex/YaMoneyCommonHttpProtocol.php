@@ -61,10 +61,9 @@ class YaMoneyCommonHttpProtocol {
 			$code = 1;
 		}
 		if($code == 0){
-			if(CommonQuery::accountPayIn($request)){
-				$this->log("User account updated: **************************** ");
-			}else $this->log("User account not updated: **************************** ");
-			$this->log("Payment code 0 : **************************** ");
+			if(!CommonQuery::accountPayIn($request)){
+				$this->log("User account not updated: **************************** ");
+			}
 		}else{
 			$this->log("Payment code 1 : **************************** ");
 		}
@@ -79,7 +78,6 @@ class YaMoneyCommonHttpProtocol {
 	 * @return bool true if MD5 hash is correct
 	 */
 	private function checkMD5($request) {
-		$this->log('REQUEST: --------------------------------------------------------------------');
 		$str =
 			$request['action'] . ";" .
 			$request['orderSumAmount'] . ";" .
@@ -89,14 +87,15 @@ class YaMoneyCommonHttpProtocol {
 			$request['invoiceId'] . ";" .
 			$request['customerNumber'] . ";" .
 			$this->settings->SHOP_PASSWORD;
-		//Log
-		$this->log("String to md5: " . $str);
-		foreach($request as $k=>$v){
-			$this->log('\n '.$k.' - '. $v);
-		}
 		//md5
 		$md5 = strtoupper(md5($str));
 		if ($md5 != strtoupper($request['md5'])) {
+			$this->log('REQUEST: --------------------------------------------------------------------');
+			//Log
+			$this->log("String to md5: " . $str);
+			foreach($request as $k=>$v){
+				$this->log(' '.$k.' - '. $v);
+			}
 			$this->log("Wait for md5:" . $md5 . ", recieved md5: " . $request['md5']);
 			return false;
 		}
