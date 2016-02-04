@@ -21,12 +21,17 @@ class AccountController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','pay','success','view','fail','check-order','payment-aviso'],
+                'only' => ['index','pay','success','view','fail','check-order','payment-aviso'], //
                 'rules' => [
                     [
-                        'actions' => ['index','pay','success','view','fail','check-order','payment-aviso'],
+                        'actions' => ['index','pay','success','view','fail'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['check-order','payment-aviso'],
+                        'allow' => true,
+                        'roles' => ['?','@'],
                     ],
                 ],
             ],
@@ -39,6 +44,14 @@ class AccountController extends Controller
         ];
     }
 
+    public function beforeAction($action)
+    {
+        if ($action->id === 'check-order' || $action->id === 'payment-aviso' || $action->id === 'pay') {
+            $this->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
+    }
+
     /**
      * Lists all UserAccount models.
      * @return mixed
@@ -46,7 +59,7 @@ class AccountController extends Controller
     public function actionIndex()
     {
         $searchModel = new UserAccountSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel;
         $settings = new Settings();
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -101,6 +114,12 @@ class AccountController extends Controller
         $yaMoneyCommonHttpProtocol = new YaMoneyCommonHttpProtocol($settings);
         print $yaMoneyCommonHttpProtocol->checkOrder(Yii::$app->request->post());
     }
+
+    public function actionCheckPost()
+    {
+        return $this->render('check-post');
+    }
+
 
     public function actionSuccess(){
         return $this->render('success',[]);

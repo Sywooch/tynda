@@ -8,7 +8,8 @@
 
 namespace common\models;
 
-
+use common\models\users\User;
+use common\models\users\UserAccount;
 use yii\db\ActiveRecord;
 use Yii;
 use yii\helpers\FileHelper;
@@ -41,4 +42,38 @@ class CommonQuery extends ActiveRecord
 			Yii::$app->session->setFlash('success', 'Объявление успешно удалено.');
 		}
 	}
+	/**
+	 * Insert Pay in account user.
+	 * @param array $request
+	 * @param integer $user_id
+	 * @return boolean
+	 */
+	public static function accountPayIn($request)
+	{
+		if(!empty($request)){
+			$user_id = $request['customerNumber'];
+			$model = new UserAccount();
+			$model->id_user = $user_id;
+			$model->date = date('Y-m-d');
+			$model->description = 'Пополнение баланса';
+			$model->invoice = $request['orderNumber'];
+			$model->pay_in = $request['orderSumAmount'];
+			$model->pay_in_with_percent = $request['shopSumAmount'];
+			$model->invoiceId = $request['invoiceId'];
+			$model->yandexPaymentId = $request['yandexPaymentId'];
+			if($model->save() && self::userAccontUpdateSum($request['orderSumAmount'],$user_id)){
+				return true;
+			}else return false;
+		}
+	}
+
+	private static function userAccontUpdateSum($sum, $user_id)
+	{
+		$user = User::findOne(['id'=>$user_id]);
+		$user->account = $user->account + $sum;
+		if($user->save()){
+			return true;
+		}else return false;
+	}
+
 }

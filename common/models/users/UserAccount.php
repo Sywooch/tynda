@@ -7,14 +7,20 @@ use Yii;
 /**
  * This is the model class for table "user_account".
  *
- * @property string $id
- * @property string $id_user
+ * @property integer $id
+ * @property integer $id_user
  * @property string $pay_in
  * @property string $pay_out
+ * @property string $pay_in_with_percent
  * @property string $invoice
  * @property string $date
  * @property string $description
  * @property string $service
+ * @property integer $yandexPaymentId
+ * @property integer $invoiceId
+ * @property string $paymentType
+ *
+ * @property User $idUser
  */
 class UserAccount extends \yii\db\ActiveRecord
 {
@@ -34,10 +40,11 @@ class UserAccount extends \yii\db\ActiveRecord
         return [
             [['id_user'], 'required'],
             [['id_user'], 'integer'],
-            [['pay_in', 'pay_out'], 'number'],
+            [['pay_in', 'pay_out', 'pay_in_with_percent', 'yandexPaymentId', 'invoiceId'], 'number'],
             [['date'], 'safe'],
             [['invoice'], 'string', 'max' => 32],
             [['description', 'service'], 'string', 'max' => 80],
+            [['paymentType'], 'string', 'max' => 4],
             [['invoice'], 'unique'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
@@ -53,10 +60,22 @@ class UserAccount extends \yii\db\ActiveRecord
             'id_user' => 'Id User',
             'pay_in' => 'Приход',
             'pay_out' => 'Расход',
+            'pay_in_with_percent' => 'Приход с учетом процентов',
             'invoice' => 'Счет №',
             'date' => 'Дата',
             'description' => 'Информация',
             'service' => 'Услуга',
+            'yandexPaymentId' => 'Yandex Payment ID',
+            'invoiceId' => 'Invoice ID',
+            'paymentType' => 'Тип оплаты',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'id_user']);
     }
 }

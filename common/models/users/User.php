@@ -151,7 +151,7 @@ class User extends ActiveRecord implements IdentityInterface //ActiveRecord impl
         if(!Yii::$app->user->isGuest){
             $user = Yii::$app->user->getIdentity();
             $admin = \Yii::$app->authManager->getAssignment('admin',$user->getId());
-            return $admin; // возвращает alse или true
+            return $admin; // возвращает false или true
         }else{
             return false;
         }

@@ -18,8 +18,10 @@ class UserAccountSearch extends UserAccount
     public function rules()
     {
         return [
-            [['id', 'id_user', 'invoice'], 'integer'],
-            [['pay_in', 'pay_out'], 'number'],
+            [['id', 'id_user'], 'integer'],
+            [['pay_in', 'pay_out', 'pay_in_with_percent', 'yandexPaymentId', 'invoiceId'], 'number'],
+            [['invoice'], 'string', 'max' => 32],
+            [['paymentType'], 'string', 'max' => 4],
             [['date', 'description', 'service'], 'safe'],
         ];
     }
@@ -40,9 +42,14 @@ class UserAccountSearch extends UserAccount
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $in_out)
     {
-        $query = UserAccount::find()->orderBy('date DESC');
+        if($in_out == 'in'){
+            $query = UserAccount::find()->andWhere(['IS NOT','pay_in', NULL])->orderBy('date DESC');
+        }else{
+            $query = UserAccount::find()->andWhere(['IS NOT','pay_out', NULL])->orderBy('date DESC');
+        }
+
 
         // add conditions that should always apply here
 
@@ -64,11 +71,15 @@ class UserAccountSearch extends UserAccount
             'id_user' => $this->id_user,
             'pay_in' => $this->pay_in,
             'pay_out' => $this->pay_out,
-            'invoice' => $this->invoice,
+            'paymentType' => $this->paymentType,
             'date' => $this->date,
         ]);
 
-        $query->andFilterWhere(['like', 'description', $this->description])
+        $query
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'invoice', $this->invoice])
+            ->andFilterWhere(['like', 'invoiceId', $this->invoiceId])
+            ->andFilterWhere(['like', 'yandexPaymentId', $this->yandexPaymentId])
             ->andFilterWhere(['like', 'service', $this->service]);
 
         return $dataProvider;
