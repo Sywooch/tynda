@@ -20,18 +20,15 @@ $color = 'border: 1px solid #ddd;';
                 <h2 style="margin: 5px 0px;">
                     <?= Html::a(Html::encode($model->fio), [Url::home() . 'med/doctors/view', 'id' => $model->id_user]) ?>
                 </h2>
-                <p><strong><?= $model->rank ?></strong></p>
-                <p><i class="small-text">Врач: </i>&nbsp;<strong><?= Html::a($model->spec,[Url::home() . 'med/doctors/index','cat'=>$model->id_spec]) ?></strong></p>
-                <p><i class="small-text">О себе:&nbsp;</i><strong><?= $model->about ?></strong></p>
+                <p style="margin: 2px;"><strong><?= $model->rank ?></strong></p>
+                <p style="margin: 2px;"><i class="small-text">Стоимость приема:</i>&nbsp;&nbsp;<strong><?= number_format($model['price'],2,',',' ') ?></strong> руб.</p>
+                <p style="margin: 2px;"><i class="small-text">Врач: </i>&nbsp;<strong><?= Html::a($model->spec,[Url::home() . 'med/doctors/index','cat'=>$model->id_spec]) ?></strong></p>
+                <p style="margin: 2px;"><i class="small-text">О себе:&nbsp;</i><strong><?= $model->about ?></strong></p>
 
             </div>
             <div class="col-md-3 resume-right-col" style="margin-top: 10px;">
                 <p><i class="small-text">Стаж: </i>&nbsp;<span style="font-weight: bold;"><?= Arrays::ageToStr($model->exp) ?></span></p>
-                <p><i class="small-text">Создано:&nbsp;<?= \Yii::$app->formatter->asDate($model->created_at, 'long') ?></i></p>
-                <p><i class="small-text">Обновлено:&nbsp;<?= \Yii::$app->formatter->asDate($model->updated_at, 'long') ?></i></p>
-
-
-
+                <p><i class="small-text">На сайте с:&nbsp;<?= \Yii::$app->formatter->asDate($model->created_at, 'long') ?></i></p>
             </div>
         </div>
 

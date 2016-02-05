@@ -8,8 +8,7 @@
 
 namespace common\models;
 
-use common\models\users\User;
-use common\models\users\UserAccount;
+use \common\models\users\UserAccount;
 use yii\db\ActiveRecord;
 use Yii;
 use yii\helpers\FileHelper;
@@ -69,7 +68,7 @@ class CommonQuery extends ActiveRecord
 
 	private static function userAccontUpdateSum($sum, $user_id)
 	{
-		$user = User::findOne(['id'=>$user_id]);
+		$user = \common\models\users\User::findOne(['id'=>$user_id]);
 		$user->account = $user->account + $sum;
 		if($user->save()){
 			return true;

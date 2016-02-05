@@ -14,11 +14,11 @@ $cur_cat = $ses->get('current_cat');
 $parent_cat = $ses->get('parent_cat');
 $first_child = $ses->get('first_child');
 $ses->close();
-$this->title = 'Хотят оказать услуги';
+$this->title = 'Оказание услуг';
 $this->params['left'] = true;
 $this->params['right'] = true;
 if(!empty($cur_cat)){
-    $this->params['breadcrumbs'][] = ['label' => 'Хотят оказать услуги', 'url' => ['index']];
+    $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['index']];
     $m_kw = $cur_cat['m_keyword'];
     $m_d = $cur_cat['m_description'];
 }else{

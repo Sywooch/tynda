@@ -39,8 +39,7 @@ if ($period <= $const['vip']  && $model->vip_date !== null) {
             </div>
             <div class="col-md-3 resume-right-col" style="margin-top: 10px;">
                 <p><i class="small-text">З/п: </i>&nbsp;<span style="font-weight: bold;"><?= number_format($model->salary,2,',',"'") ?></span>&nbsp;<i class="small-text">Руб. </i></p>
-                <p><i class="small-text">Создано:&nbsp;<?= \Yii::$app->formatter->asDate($model->created_at, 'long') ?></i></p>
-                <p><i class="small-text">Обновлено:&nbsp;<?= \Yii::$app->formatter->asDate($model->updated_at, 'long') ?></i></p>
+                <p><i class="small-text"><?= \Yii::$app->formatter->asDate($model->updated_at, 'long') ?></i></p>
 
 
 

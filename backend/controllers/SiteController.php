@@ -20,9 +20,9 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'denyCallback' => function ($rule, $action){
+                /*'denyCallback' => function ($rule, $action){
                     //return $action->controller->redirect('/site/logout');
-                },
+                },*/
                 'rules' => [
                     [
                         'actions' => ['login'],

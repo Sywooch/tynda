@@ -40,9 +40,9 @@ class CategMed extends Widget
 
         if (!$is_company) {
             if ($is_doctor) {
-                echo Html::a('<i class="fa fa-edit"></i>&nbsp;&nbsp;Редактировать свои медицинские данные', ['/med/doctors/update'], ['class' => 'btn-u btn-u-default','style'=>'padding: 9px 2px 9px 10px; font-size:1em; width:100%;']);
+                echo Html::a('<i class="fa fa-edit"></i>&nbsp;&nbsp;Редактировать свои медицинские данные', ['/med/doctors/update'], ['class' => 'btn-u btn-u-orange','style'=>'padding: 9px 2px 9px 10px; font-size:1em; width:100%;']);
             } else {
-                echo Html::a('<i class="fa fa-user-md"></i>&nbsp;&nbsp;Я врач, и хочу появиться на сайте', ['/med/doctors/create'], ['class' => 'btn-u btn-u-default','style'=>'padding: 9px 2px 9px 10px; font-size:1em; width:100%;']);
+                echo Html::a('<i class="fa fa-user-md"></i>&nbsp;&nbsp;Я врач, и хочу появиться на сайте', ['/med/doctors/create'], ['class' => 'btn-u btn-u-orange','style'=>'padding: 9px 2px 9px 10px; font-size:1em; width:100%;']);
             }
         }
         echo '</div>';

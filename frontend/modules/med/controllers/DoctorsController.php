@@ -68,17 +68,28 @@ class DoctorsController extends Controller
     public function actionView($id)
     {
         $model = VDoctors::find()->where(['id_user'=>$id])->asArray()->one();
-        $service = Service::find()->where(['id_user'=>$id])->asArray()->all();
+        //$service = Service::find()->where(['id_user'=>$id])->asArray()->all();
         $edu = UserEdu::find()->where(['id_user'=>$id])->asArray()->all();
         $exp = UserExp::find()->where(['id_user'=>$id])->asArray()->all();
         return $this->render('view', [
             'model' => $model,
-            'service' => $service,
+            //'service' => $service,
             'edu'=>$edu,
             'exp'=>$exp,
         ]);
     }
-
+    public function actionService($id)
+    {
+        $user = VDoctors::find()->where(['id_user'=>$id])->asArray()->one();
+        $model = Service::find()->where(['id_user'=>$id])->asArray()->all();
+        if($model == false){
+            $model = new Service();
+        }
+        return $this->render('service',[
+            'model'=>$model,
+            'user'=>$user,
+        ]);
+    }
     public function actionMyServ()
     {
         $user_id = \Yii::$app->user->identity->getId();

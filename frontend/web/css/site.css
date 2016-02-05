@@ -146,6 +146,65 @@ i.lab{
     border-bottom: 1px solid #c0c0c0;
 }
 
+/*TOP*/
+@media (max-width: 1024px) {
+    .top-center-block{
+        width: 100%;
+        text-align: center;
+    }
+}
+@media (max-width: 778px) {
+    .top-center-block{
+        width: 100%;
+    }
+}
+@media (max-width: 1310px) {
+    .top-right-block{
+        max-width: 680px;
+        padding: 0;
+    }
+}
+@media (max-width: 1275px) {
+    .top-right-block{
+        max-width: 652px;
+        padding: 0;
+    }
+}
+@media (max-width: 1245px) {
+    .top-right-block{
+        max-width: 600px;
+        padding-left: 0;
+    }
+}
+@media (max-width: 1215px) {
+    .top-right-block{
+        max-width: 565px;
+        padding-left: 0;
+    }
+}
+@media (min-width: 1310px) {
+    .top-right-block{
+        max-width: none;
+        padding-left: 0;
+    }
+}
+@media (max-width: 1010px) {
+    .top-right-block{
+        width: 100%;
+        max-width: none;
+    }
+}
+
+
+.valute{
+    display: inline-block;
+    padding: 5px 2px;
+}
+.weather
+{
+    display: inline-block;
+    padding: 5px 2px;
+}
 /*Sky-Forms
 ------------------------------------*/
 /*Contact Style*/
@@ -1016,6 +1075,10 @@ ul.sorter > li a{
     left: 0;
     position: absolute;
     width: 50px;
+}
+
+.cat-button{
+    margin-bottom: 2px;
 }
 
 .slider-on-main{

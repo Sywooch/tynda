@@ -24,7 +24,6 @@ $user = Yii::$app->user->getIdentity();
 ?>
 <div class="doctors-view">
     <div class="form-group">
-        <?= Html::a('<i class="fa fa-reply"></i>&nbsp;&nbsp;Назад к списку врачей', ['index', 'id' => $model->id_user], ['class' => 'btn btn-default',]) ?>
         <?php if ($user->id === $model['id_user'] && $user->doctor) { ?>
             <?= Html::a('<i class="fa fa-edit"></i>&nbsp;&nbsp;Редактировать свои медицинские данные', ['update'], ['class' => 'btn btn-primary']) ?>
         <?php } ?>
@@ -42,29 +41,15 @@ $user = Yii::$app->user->getIdentity();
 
             <p style="margin: 2px;"><i class="small-text">Стаж работы:</i>&nbsp;<strong><?= Arrays::ageToStr($model['exp']) ?></strong></p>
 
-            <p style="margin: 2px;"><i class="small-text">Ведет прием:</i>&nbsp;&nbsp;<?= Arrays::getReciving($model['receiving']) ?></p>
-
+            <p style="margin: 2px;"><i class="small-text">Ведет прием:</i>&nbsp;&nbsp;<strong><?= Arrays::getReciving($model['receiving']) ?></strong></p>
+            <p style="margin: 2px;">
+                <i class="small-text">Стоимость приема:</i>&nbsp;&nbsp;<strong><?= number_format($model['price'],2,',',' ') ?></strong> руб.
+                <i class="small-text">&nbsp;&nbsp; Еше услуги: </i><?= Html::a('Открыть',['service', 'id'=>$model['id_user']]) ?>
+            </p>
             <p><?= $model['description'] ?></p>
         </div>
     </div>
-    <p style="margin-bottom: 0px; margin-top: 8px; font-size: 1.2em; color: #909090;">Услуги: </p>
     <hr style="margin: 0px; border: 2px solid #ddd;">
-    <div class="row">
-        <div class="col-sm-12">
-            <?php if (is_array($service)) { ?>
-                <?php foreach ($service as $item) { ?>
-                    <h4 style="margin: 3px;"><?= $item['name'] ?>&nbsp;<span class="pull-right"><?= $item['cost'] ?> руб.</span>&nbsp;</h4>
-                    <p style="margin: 3px;"><?= nl2br($item['description']) ?></p>
-                    <hr style="margin: 0px; border: 1px solid #ddd;">
-                <?php } ?>
-            <?php } else { ?>
-                <div class="alert alert-info fade in">
-                    <strong>Услуги не указаны.</strong>
-                </div>
-            <?php } ?>
-        </div>
-    </div>
-
 
     <p style="margin-bottom: 0px; margin-top: 8px; font-size: 1.2em; color: #909090;">Опыт работы: </p>
     <hr style="margin: 0px; border: 2px solid #ddd;">

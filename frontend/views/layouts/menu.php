@@ -65,23 +65,8 @@ $li = (100 / $count) - 0.01;
                         <?= Html::img(Url::to('@frt_url/img/logo_2.png'), ['id' => 'logo-header', 'style' => 'height:80px;', 'alt' => 'Logo']) ?>
                     </a>
                 </div>
-                <div class="col-md-4 side_left" style="min-height: 80px;">
+                <div class="col-md-7 side_left" style="min-height: 80px;">
 
-                </div>
-
-                <div class="col-md-3 side_left" style="min-height: 80px;">
-                    <div style="display: block; content: ' '; width: 282px; float: right; margin: 7px 0px;">
-                        <div style="border: 1px solid #c0c0c0; padding: 3px;">
-                            <div  style="padding: 0px 0px 0px 0px; display: inline-block; vertical-align: top;" class="rsb_courses" data-params="font=arial&c_base=RUB&c_1=USD&c_2=EUR&style=gray&bg=ECF0F1&fc=9da2a6&bg2=ffffff&fc2=999999&type=4&angle=0&c=1"></div>
-                            <!-- weather widget start -->
-                            <a style=" margin-top: 1px; padding: 0px 0px 4px 0px; display: inline-block; background-color: #ECF0F1; " href="//ibooked.ru/weather/Tynda-w438247">
-                                <img src="//w.bookcdn.com/weather/picture/26_w438247_1_20_ecf0f1_250_bdc3c7_9da2a6_ffffff_1_2071c9_ffffff_0_3.png?scode=2&domid=589" />
-                            </a>
-                            <!-- weather widget end -->
-                            <span class="rsb_courses" data-params="font=arial&c_base=RUB&c_1=USD&c_2=EUR&style=light&bg=#BDC3C7&fc=#9DA2A6&bg2=#ECF0F1&fc2=#9DA2A6&type=4&angle=0&c=1"></span>
-                            <script type="text/javascript" src="//rossbanki.ru/js/rsb_c.js"></script>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-md-3" style="min-height: 80px; padding-top: 7px;">
                     <?= Html::a('<span style="display: block; margin-top: 18px;"><span class="icon-envelope-letter" style="padding-right: 10px;" aria-hidden="true"></span>Коллективные письма</span>', ['/letters/letters/index'], ['class' => 'btn-u btn-brd', 'style' => 'margin-bottom:4px; display: block; height:73px; text-align: center; color:#7E0000;']) ?>

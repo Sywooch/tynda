@@ -41,9 +41,9 @@ class CategJob extends Widget
         echo '<span style="padding-left: 9px;">Сфера деятельности: </span>';
         echo '</h2>';
             if ($is_vacancy) {
-                echo Html::a('<i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Подать вакансию', ['/jobs/vacancy/create'], ['class' => 'btn-u btn-u-default','style'=>'padding: 9px 2px 9px 17px; font-size:1.1em; width:100%;']);
+                echo Html::a('<i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Подать вакансию', ['/jobs/vacancy/create'], ['class' => 'btn-u btn-u-orange','style'=>'padding: 9px 2px 9px 17px; font-size:1.1em; width:100%;']);
             } else {
-                echo Html::a('<i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Подать резюме', ['/jobs/resume/create'], ['class' => 'btn-u btn-u-default','style'=>'padding: 9px 2px 9px 17px; font-size:1.1em; width:100%;']);
+                echo Html::a('<i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Подать резюме', ['/jobs/resume/create'], ['class' => 'btn-u btn-u-orange','style'=>'padding: 9px 2px 9px 17px; font-size:1.1em; width:100%;']);
             }
         echo '</div>';
         echo '<div class="thumbnail" style="margin: 0; padding: 1px; border-color: #A90000;">';
