@@ -40,7 +40,7 @@ class SliderMain extends \yii\db\ActiveRecord
     {
         return [
             [['id_user','name'], 'required'],
-            [['id_user'], 'integer'],
+            [['id_user','status'], 'integer'],
             [['crop_info','image'], 'safe'],
             [['name'], 'string', 'max' => 50],
             [['img','thumbnail','description'], 'string', 'max' => 255],
@@ -62,6 +62,7 @@ class SliderMain extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_user' => 'Пользователь',
+            'status'=>'Статус',
             'name' => 'Название',
             'img' => 'Рисунок',
             'thumbnail' => 'Миниатюра',

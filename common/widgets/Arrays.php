@@ -21,6 +21,9 @@ class Arrays
     const IMG_MAX_HEIGHT = 480;
     const IMG_MAX_WIDTH = 640;
 
+    const CASH_TIME = 3600; //в секундах 60*60 = 3600 = 1 час
+
+
     public static function comp(){
         return [
             ['id'=>'0','name'=>'частное лицо'],

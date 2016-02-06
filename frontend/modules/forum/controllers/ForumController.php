@@ -92,20 +92,20 @@ class ForumController extends Controller
             $name_cat = $session->get('forum_cat_name');
             $session->close();
             $model = new ForumTheme();
-            $post = Yii::$app->request->post('ForumTheme');
+            $post = \Yii::$app->request->post();
             if ($model->load($post)) {
                 $model->m_description = $post['ForumTheme']['name'];
                 $model->m_keyword = $post['ForumTheme']['name'];
                 $model->id_cat = $id_cat;
                 $model->id_author = Yii::$app->user->identity->getId();
-                if ($model->save()) {
+               if ($model->save()) {
                     return $this->redirect(['theme', 'id' => $model->alias]);
-                } else {
-                    return $this->render('create', [
-                        'model' => $model,
-                        'id_cat' => $id_cat,
-                    ]);
-                }
+               } else {
+                   return $this->render('create', [
+                       'model' => $model,
+                       'id_cat' => $id_cat,
+                   ]);
+               }
             } else {
                 return $this->render('create', [
                     'model' => $model,

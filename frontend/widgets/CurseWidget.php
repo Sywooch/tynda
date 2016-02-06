@@ -47,7 +47,8 @@ class CurseWidget extends Widget
     {
         $url = Yii::getAlias('@frt_dir/temp');
         $request = 'http://www.cbr.ru/scripts/XML_daily.asp';
-        if(strpos($request,'200 OK')){
+        $status=get_headers($request);
+        if(in_array("HTTP/1.1 200 OK", $status) or in_array("HTTP/1.0 200 OK", $status)){
             $xml = simplexml_load_file($request);
         }
         if($xml&&isset($xml)) {

@@ -32,7 +32,7 @@ class CategLetters extends Widget
         echo '</h3>';
         echo '</div>';
         echo '<div  style="margin: 0px 0px 2px 0px; width: 100%; border: solid 1px #780000;">';
-        echo Html::a('<span class="icon-bell" aria-hidden="true" style="padding-right: 10px;"></span>Предложить письмо', [Url::to('/letters/letters/create')], ['class' => 'btn-u btn-u-default', 'style'=>'width:100%; text-align: center; font-size: 11px; text-transform: uppercase; font-weight: 400;']);
+        echo Html::a('<span class="icon-bell" aria-hidden="true" style="padding-right: 10px;"></span>Предложить письмо', [Url::to('/letters/letters/create')], ['class' => 'btn-u btn-u-orange', 'style'=>'width:100%; text-align: center; font-size: 11px; text-transform: uppercase; font-weight: 400;']);
         echo '</div>';
         echo '<div id="vertical" class="hovermenu ttmenu dark-style menu-color-gradient" style="margin: 0px 0px 0px 0px;">';
         echo '<div class="navbar navbar-default" role="navigation" style="margin: 0;">';

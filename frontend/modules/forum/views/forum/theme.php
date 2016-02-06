@@ -65,10 +65,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ]);
 
             if (!Yii::$app->user->isGuest) {
-                $new_message = new \common\models\forum\ForumMessage();
-                echo $this->render('_addMessage', [
-                    'model' => $new_message
-                ]);
+                if($model['status'] == 1){
+                    $new_message = new \common\models\forum\ForumMessage();
+                    echo $this->render('_addMessage', [
+                        'model' => $new_message
+                    ]);
+                }else{
+                    echo '<h6>Тема закрыта (оставлять новые сообщения в закрытой теме нельзя).</h6>';
+                }
+
             } else { ?>
                 <h6>Зарегистрируйтесь или войдите на сайт, чтобы отвечать по теме.</h6>
             <?php } ?>

@@ -9,6 +9,7 @@
 namespace frontend\widgets;
 
 use Yii;
+use yii\caching\DbDependency;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use \yii\bootstrap\Widget;
@@ -19,21 +20,26 @@ use frontend\widgets\Avatar;
 
 class NewsMainWidget extends Widget
 {
+    public $count_item;
 
 
-    public function show($count_item = 3)
+    public function show()
     {
+        $dependency = new DbDependency();
+        $dependency->sql = 'SELECT MAX(modifyed_at) FROM news';
+        $news = News::getDb()->cache(function ($news){
+            return News::find()//получаем массив с новостями
+                ->select('title,alias,id,publish,thumbnail,id_cat')
+                ->with('tags')
+                ->with('cat')
+                ->asArray()
+                ->where(['status' => 1])
+                ->andWhere('(publish < NOW() AND (unpublish < NOW()OR unpublish IS NULL))')
+                ->orderBy(['publish' => SORT_DESC])
+                ->limit(3)
+                ->all();
+        }, Arrays::CASH_TIME, $dependency);
 
-        $news = News::find()//получаем массив с новостями
-        ->select('title,alias,id,publish,thumbnail,id_cat')
-            ->with('tags')
-            ->with('cat')
-            ->asArray()
-            ->where(['status' => 1])
-            ->andWhere('(publish < NOW() AND (unpublish < NOW()OR unpublish IS NULL))')
-            ->orderBy(['publish' => SORT_DESC])
-            ->limit($count_item)
-            ->all();
         if (is_array($news) && !empty($news)) {
             echo '<table class="main-table news">';
            // echo '<th colspan="2">';
@@ -59,11 +65,7 @@ class NewsMainWidget extends Widget
                 echo '</tr>';
             }
             echo '</table>';
-
-            //echo '<pre>';
-            //print_r($news);
-            //echo '</pre>';
-        } // END IF
+        }
     }
 
 }

@@ -9,6 +9,7 @@
 namespace frontend\widgets;
 
 use Yii;
+use yii\caching\DbDependency;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use \yii\bootstrap\Widget;
@@ -24,16 +25,22 @@ class LettersMainWidget extends Widget
     public function show($count_item = 4)
     {
 
-        $letters = Letters::find()//получаем массив с новостями
-        ->select('title,alias,id,publish,thumbnail,id_cat')
-            ->with('tags')
-            ->with('cat')
-            ->asArray()
-            ->where(['status' => 1])
-            ->andWhere('(publish < NOW() AND (unpublish < NOW()OR unpublish IS NULL))')
-            ->orderBy(['publish' => SORT_DESC])
-            ->limit($count_item)
-            ->all();
+        $dependency = new DbDependency();
+        $dependency->sql = 'SELECT MAX(updated_at) FROM letters WHERE status = 1';
+        $letters = Letters::getDb()->cache(function ($db){
+            //$db->createCommand();
+            return Letters::find('SELECT title, alias, id, cat.name, cat.alias, ')
+            ->select('title,alias,id,publish,thumbnail,id_cat')
+                ->with('tags')
+                ->with('cat')
+                ->asArray()
+                ->where(['status' => 1])
+                ->andWhere('(publish < NOW() AND (unpublish < NOW()OR unpublish IS NULL))')
+                ->orderBy(['publish' => SORT_DESC])
+                ->limit(4)
+                ->all();
+        }, Arrays::CASH_TIME, $dependency);
+
         if (is_array($letters) && !empty($letters)) {
             echo '<table class="main-table">';
             echo '<th colspan="2">';

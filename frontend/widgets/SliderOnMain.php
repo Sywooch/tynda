@@ -15,12 +15,24 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\web\View;
 use \yii\bootstrap\Widget;
-
-
+use common\models\slider\SliderMain;
+use \common\widgets\Arrays;
+use \yii\caching\DbDependency;
 class SliderOnMain extends Widget
 {
-    public function run($path, $images, $size = null)
+    public function run($path = null, $images = null, $size = null)
     {
+        if($images == null && $path == null ){
+            $path = Url::to('@frt_url/img/slider/');
+            $dependency = new DbDependency();
+            $dependency->sql = 'SELECT MAX(id) FROM slider_main';
+            $images = SliderMain::getDb()->cache(function ($db){
+                return SliderMain::find()->asArray()->where(['status'=>1])->all();
+            }, Arrays::CASH_TIME, $dependency);
+
+
+
+        }
         self::registerCss();
         if(!empty($images[0])){
             echo '<div id="slider-on-main" class="demo">';

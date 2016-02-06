@@ -1,11 +1,10 @@
 <?php
 /* @var $this yii\web\View */
 use yii\helpers\Url;
-
-
+use common\models\slider\SliderMain;
+use \common\widgets\Arrays;
 $this->title = 'Наша тында';
-$path = Url::to('@frt_url/img/slider/');
-$images = \common\models\slider\SliderMain::find()->asArray()->all();
+
 ?>
 <div class="site-index row" style="margin-top: 10px; margin-bottom: 20px;">
 	<div class="container-fluid">
@@ -14,7 +13,7 @@ $images = \common\models\slider\SliderMain::find()->asArray()->all();
 				<?php frontend\widgets\NewsMainWidget::show(); ?>
 			</div>
 			<div class="col-md-5">
-				<?= \frontend\widgets\SliderOnMain::run($path, $images, '100%'); ?>
+				<?= \frontend\widgets\SliderOnMain::run(); ?>
 			</div>
 		</div>
 	</div>

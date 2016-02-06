@@ -39,7 +39,8 @@ class WeatherWidget// extends Widget
     {
         $url = Yii::getAlias('@frt_dir/temp');
         $request = 'https://api.worldweatheronline.com/free/v2/weather.ashx?q=Tynda&format=XML&num_of_days=1&lang=ru&key=1eb12ad654fc4c3c597cef20bfaa9';
-        if(strpos($request,'200 OK')){
+        $status=get_headers($request);
+        if(in_array("HTTP/1.1 200 OK", $status) or in_array("HTTP/1.0 200 OK", $status)){
             $xml = simplexml_load_file($request);
         }
         if($xml&&isset($xml)){

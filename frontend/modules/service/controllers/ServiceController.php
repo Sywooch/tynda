@@ -294,7 +294,7 @@ class ServiceController extends Controller
                     $arr = [
                         'account'=>$m_user->account,
                         'pay'=>$pay['service_up_pay'],
-                        'date'=> date_create_immutable() ,
+                        'date'=> date('Y-m-d') ,
                         'message'=>'Объявление поднято на верх. С вашего счета списано '.$pay['service_up_pay'].'руб.',
                         'm_type'=>'success'
                     ];
@@ -344,7 +344,7 @@ class ServiceController extends Controller
                     $arr = [
                         'account'=>$m_user->account,
                         'pay'=>$pay['service_vip_pay'],
-                        'date'=> date_create_immutable() ,
+                        'date'=> date('Y-m-d') ,
                         'message'=>'Объявление выделено на ( '.$period['vip'].' )дней и поднято на верх. С вашего счета списано '.$pay['service_vip_pay'].'руб.',
                         'm_type'=>'success'
                     ];
