@@ -36,6 +36,9 @@ use yii\bootstrap\NavBar;
 				<a href="<?=Url::home()?>"><i class="fa fa-dashboard"></i><span class="nav-label">Панель</span></a>
 			</li>
 			<li>
+				<?= Html::a('<i class="fa fa-money"></i><span class="nav-label"> Платежи</span>',['/account/account/index']) ?>
+			</li>
+			<li>
 				<a href="#"><i class="fa fa-map"></i><span class="nav-label"> Афиша</span><span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
 					<li><?= Html::a('<i class="fa fa-cubes"></i> Афиша категории',['/afisha/afisha-category/index']) ?></li>

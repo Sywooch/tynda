@@ -206,9 +206,12 @@ class DoctorsController extends Controller
      */
     public function actionDelete()
     {
-        $user = Yii::$app->user->getId();
-        $model = $this->findModel($user);
-        Service::deleteAll(['id_user'=>$user]);
+        $user_id = Yii::$app->user->getId();
+        $model = $this->findModel($user_id);
+        Service::deleteAll(['id_user'=>$user_id]);
+        $user = \common\models\users\User::findOne($user_id);
+        $user->doctor = 0;
+        $user->save();
         if($model->delete()){
             \Yii::$app->session->setFlash('success', 'Данные успешно удалены.');
         }

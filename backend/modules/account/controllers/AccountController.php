@@ -36,7 +36,7 @@ class AccountController extends Controller
     public function actionIndex()
     {
         $searchModel = new BUserAccountSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel;
 
         return $this->render('index', [
             'searchModel' => $searchModel,

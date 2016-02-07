@@ -28,7 +28,15 @@ class WeatherWidget// extends Widget
         $file = $dir.'/weather.json';
         if(file_exists($file)){
             $data = file_get_contents($url.'/weather.json');
-        }else {
+            $json = json_decode($data, true);
+            if(($json['create']+(60*60)) < time()){
+                unlink($file);
+                if(!self::setJsonFile()) return false;
+                $data = file_get_contents($url.'/weather.json');
+            }else{
+                $data = file_get_contents($url.'/weather.json');
+            }
+        } else {
             if(!self::setJsonFile()) return false;
             $data = file_get_contents($url.'/weather.json');
         }
@@ -54,6 +62,7 @@ class WeatherWidget// extends Widget
                 'temp' => $arr[0],
                 'type' => $arr[1],
                 'icon' => $arr[2],
+                'create' => time(),
             ];
             file_put_contents($url.'/weather.json', json_encode($json));
         }else return false;

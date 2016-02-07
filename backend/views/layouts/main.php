@@ -30,7 +30,7 @@
 	<title><?= Html::encode($this->title) ?></title>
 	<?php $this->head() ?>
 </head>
-<body class="pace-done mini-navbar">
+<body class="pace-done ">  <!-- For collapser left nav panel insert class - mini-navbar -->
 <?php $this->beginBody() ?>
 <div id="wrapper">
 	<?= $this->render(

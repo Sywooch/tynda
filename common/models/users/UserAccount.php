@@ -60,7 +60,7 @@ class UserAccount extends \yii\db\ActiveRecord
             'id_user' => 'Id User',
             'pay_in' => 'Приход',
             'pay_out' => 'Расход',
-            'pay_in_with_percent' => 'Приход с учетом процентов',
+            'pay_in_with_percent' => 'Приход(-% комиссия)',
             'invoice' => 'Счет №',
             'date' => 'Дата',
             'description' => 'Информация',

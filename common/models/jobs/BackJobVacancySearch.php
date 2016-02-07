@@ -42,7 +42,7 @@ class BackJobVacancySearch extends JobVacancy
      */
     public function search($params)
     {
-        $query = JobVacancy::find();
+        $query = JobVacancy::find()->with('user');
 
         // add conditions that should always apply here
 

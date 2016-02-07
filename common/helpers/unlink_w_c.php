@@ -7,10 +7,12 @@
  */
 $dir = \Yii::getAlias('@frt_dir/temp');
 
-if(file_exists($dir.'/weather.json')){
-	unlink($dir.'/weather.json');
-}
 
-if(file_exists($dir.'/course.json')){
-	unlink($dir.'/course.json');
-}
+	if(file_exists($dir.'/weather.json')){
+		unlink($dir.'/weather.json');
+	}
+
+	if(file_exists($dir.'/course.json')){
+		unlink($dir.'/course.json');
+	}
+

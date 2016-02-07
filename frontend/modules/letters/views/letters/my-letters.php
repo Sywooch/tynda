@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="container-fluid s-results margin-bottom-50">
                     <?php foreach ($model as $item) { ?>
                         <div class="inner-results">
-                            <h3 style="margin:0px;"><?= Html::a($item['title'], ['/letters/letters/view', 'id' => $item['alias']], []) ?></h3>
+                            <h3 style="margin:0px; font-size: 1.2em;"><?= Html::a($item['title'], ['/letters/letters/view', 'id' => $item['alias']], []) ?></h3>
                             <ul class="list-inline">
                                 <?php if (!$item['status']) { ?>
                                     <li>
@@ -46,20 +46,20 @@ $this->params['breadcrumbs'][] = $this->title;
                             <ul class="list-inline up-ul">
                                 <li>
                                     <i class="small-text">‎Дата письма:</i>&nbsp;
-                                    <?= Yii::$app->formatter->asDate($item['created_at'], 'long') ?>
+                                    <span><?= Yii::$app->formatter->asDate($item['created_at'], 'long') ?></span>
                                 </li>
                                 <li>
                                     <i class="small-text">Опубликовано:</i>&nbsp;
-                                    <span id="span_updated_at_<?= $item['id'] ?>"><?= $item['publish'] != null ? ' с ' . Yii::$app->formatter->asDate($item['publish'], 'long') : '<strong>письмо не опубликовано</strong>&nbsp;' ?></span>
+                                    <span id="span_updated_at_<?= $item['id'] ?>"><?= $item['publish'] != null ? ' с ' . Yii::$app->formatter->asDate($item['publish'], 'long') : '<strong>письмо ещё не опубликовано.</strong>&nbsp;' ?></span>
                                 </li>
                                 <?php if ($item['status']) { ?>
                                     <li>
-                                        <i class="small-text">Снято с публикации:</i>&nbsp;
-                                        <span id="span_vip_date_<?= $item['id'] ?>"><?= $item['unpublish'] != null ? Yii::$app->formatter->asDate($item['vip_date'], 'long') : ' еще опубликовано.' ?></span>
+                                        <i class="small-text">Статус письма:</i>&nbsp;
+                                        <span><?= Arrays::getLetterStage($item['stage']) ?></span>
 
                                     </li>
                                 <?php } else { ?>
-                                    ‎<i>Письмо будет опубликовано после его проверки администрацией сайта. </i>
+                                    <br>‎<i>Письмо будет опубликовано после его проверки администрацией сайта. </i>
                                 <?php } ?>
                             </ul>
 

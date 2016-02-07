@@ -13,6 +13,7 @@ use common\models\jobs\JobCatRez;
 use common\models\jobs\JobCatVac;
 use common\models\med\Spec;
 use common\models\users\User;
+use yii\helpers\ArrayHelper;
 
 class Arrays
 {
@@ -61,9 +62,22 @@ class Arrays
         ];
     }
 
-    public static function forumThemeStatus($fronend = false)
+    public static function letterStage()
     {
-        if($fronend){
+        return [
+            ['id'=>'0','name'=>'Сбор подписей'],
+            ['id'=>'1','name'=>'Передано, ждем ответ'],
+            ['id'=>'2','name'=>'Ответ получен'],
+        ];
+    }
+    public static function getLetterStage($stage){
+        $arr = self::letterStage();
+        return $arr[$stage]['name'];
+    }
+
+    public static function forumThemeStatus($frontend = false)
+    {
+        if($frontend){
             $arr = [
                 '1' => 'Открыта',
                 '2' => 'Закрыта',

@@ -23,27 +23,57 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'id_user',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'contentOptions' => ['style' => 'width: 130px; max-width: 130px;'],
+                'template' => '<div class="btn-group">{view} {update}</div> {delete}',
+                'buttons' => [
+                    'view' => function ($url, $model, $key) {
+                        return Html::a(
+                            '<i class="fa fa-eye"></i>',
+                            ['view', 'id'=>$model['id']],
+                            [
+                                'class' => 'btn btn-sm btn-primary',
+                                'title' => 'Просмотр',
+                            ]
+                        );
+                    },
+                    'update' => function ($url, $model, $key) {
+                        return Html::a(
+                            '<i class="fa fa-edit"></i>',
+                            ['update', 'id'=>$model['id']],
+                            [
+                                'class' => 'btn btn-sm btn-success',
+                                'title' => 'Изменить',
+                            ]
+                        );
+                    },
+                    'delete' => function ($url, $model, $key) {
+                        return Html::a(
+                            '<i class="fa fa-trash"></i>',
+                            ['delete', 'id'=>$model['id']],
+                            [
+                                'class' => 'btn btn-sm btn-danger',
+                                'title' => 'Удалить',
+                                'data' => [
+                                    'confirm' => 'Вы действительно хотите удалить этот платеж?',
+                                    'method' => 'post',
+                                ],
+                            ]
+                        );
+                    },
+                ],
+            ],
+            [
+                'attribute' => 'id_user',
+                'label'=>'Пользователь',
+                'value'=>'user.username',
+                'filter' => false,
+            ],
             'status',
             'top_date',
             'vip_date',
-            // 'title',
-            // 'description:ntext',
-            // 'employment',
-            // 'salary',
-            // 'education',
-            // 'address',
-            // 'duties:ntext',
-            // 'require:ntext',
-            // 'conditions:ntext',
-            // 'created_at',
-            // 'updated_at',
-            // 'm_keyword',
-            // 'm_description',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'id',
         ],
     ]); ?>
 </div>

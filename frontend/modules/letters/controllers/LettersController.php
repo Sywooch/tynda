@@ -252,7 +252,11 @@ class LettersController extends Controller
 
     public function actionCreate()
     {
-        if(Yii::$app->user->isGuest)\Yii::$app->session->setFlash('danger', 'Для создания коллективного письма, зарегистрируйтесь или войдите на сайт.');
+        if(Yii::$app->user->isGuest){
+            \Yii::$app->session->setFlash('danger', 'Для создания коллективного письма, зарегистрируйтесь или войдите на сайт.');
+            return $this->redirect(['/site/login']);
+        }
+
         $model = new Letters(['scenario'=>'create']);
         if ($model->load(Yii::$app->request->post())) {
             $model->id_user = Yii::$app->user->identity->getId();
@@ -276,7 +280,7 @@ class LettersController extends Controller
 
     public function actionUpdate($id)
     {
-        if(Yii::$app->user->isGuest)\Yii::$app->session->setFlash('danger', 'Для редактирования письма, зарегистрируйтесь или войдите на сайт.');
+        if(Yii::$app->user->isGuest)\Yii::$app->session->setFlash('danger', 'Для редактирования письма, войдите на сайт.');
         $user = Yii::$app->user->getIdentity();
         $model = Letters::find()->where(['id'=>$id,'id_user'=>$user->getId()])->one();
         if ($model->load(Yii::$app->request->post())) {

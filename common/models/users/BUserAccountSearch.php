@@ -40,9 +40,13 @@ class BUserAccountSearch extends UserAccount
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $in_out = null)
     {
-        $query = UserAccount::find();
+        if($in_out == 'in'){
+            $query = UserAccount::find()->andWhere(['IS NOT','pay_in', NULL])->orderBy('id DESC');
+        }else{
+            $query = UserAccount::find()->andWhere(['IS NOT','pay_out', NULL])->orderBy('id DESC');
+        }
 
         // add conditions that should always apply here
 
@@ -73,6 +77,7 @@ class BUserAccountSearch extends UserAccount
         $query->andFilterWhere(['like', 'invoice', $this->invoice])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'service', $this->service])
+            //->andFilterWhere(['like', 'idUser.username', $this->service])
             ->andFilterWhere(['like', 'paymentType', $this->paymentType]);
 
         return $dataProvider;

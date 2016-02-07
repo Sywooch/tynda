@@ -42,7 +42,7 @@ class BackJobResumeSearch extends JobResume
      */
     public function search($params)
     {
-        $query = JobResume::find();
+        $query = JobResume::find()->with('idUser');
 
         // add conditions that should always apply here
 

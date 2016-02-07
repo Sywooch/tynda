@@ -43,6 +43,10 @@ use yii\web\JsExpression;
         \yii\helpers\ArrayHelper::map(LettersCat::find()->orderBy('lft')->orderBy('root')->all(), 'id', 'name')
     ) ?>
 
+    <?= $form->field($model, 'stage')->dropDownList(
+        \yii\helpers\ArrayHelper::map(\common\widgets\Arrays::letterStage(), 'id', 'name')
+    ) ?>
+
     <?= $form->field($model, 'status')->widget(SwitchInput::className(), [
         'name' => 'activation_status',
         'pluginOptions' => [
@@ -184,6 +188,12 @@ use yii\web\JsExpression;
         ]),
     ]); ?>
 
+    <?= $form->field($model, 'answer')->widget(CKEditor::className(),[
+        'editorOptions' => ElFinder::ckeditorOptions(['elfinder','path'=>'letters'],  [
+            'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+            'inline' => false, //по умолчанию false
+        ]),
+    ]); ?>
 
     <?= $form->field($model, 'm_keyword')->textarea(['maxlength' => true]) ?>
 

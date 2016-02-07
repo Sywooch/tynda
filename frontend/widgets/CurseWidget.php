@@ -19,7 +19,7 @@ class CurseWidget extends Widget
     {
         $data = self::getJsonFile();
         if(!$data) return null;
-        $str = '<div class="valute"><i class="fa fa-calendar"></i>&nbsp;'. $data['date'] .'&nbsp;&nbsp;&nbsp;';
+        $str = '<div class="valute"><i class="fa fa-calendar"></i>&nbsp;'. date('d.m.Y') .'&nbsp;&nbsp;&nbsp;';
 
         $str .= '<span><i class="fa fa-usd"></i>&nbsp;'. $data['courseUsd'] .'</span>&nbsp;&nbsp;&nbsp;';
 
@@ -36,7 +36,15 @@ class CurseWidget extends Widget
         $file = $dir.'/course.json';
         if(file_exists($file)){
             $data = file_get_contents($url.'/course.json');
-        }else {
+            $json = json_decode($data, true);
+            if(($json['create']+(60*60)) < time()){
+                unlink($file);
+                if(!self::setJsonFile()) return false;
+                $data = file_get_contents($url.'/course.json');
+            }else{
+                $data = file_get_contents($url.'/course.json');
+            }
+        } else {
             if(!self::setJsonFile()) return false;
             $data = file_get_contents($url.'/course.json');
         }
@@ -67,6 +75,7 @@ class CurseWidget extends Widget
                 'date' => $arr[0],
                 'courseUsd' => $arr[1],
                 'courseEur' => $arr[2],
+                'create' => time(),
             ];
             file_put_contents($url . '/course.json', json_encode($json));
         }else return false;

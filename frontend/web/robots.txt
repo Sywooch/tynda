@@ -1,2 +1,7 @@
-User-agent: *
-Disallow:
+User-Agent: *
+
+User-Agent: Googlebot
+
+
+User-Agent: Yandex
+Host: https://nashatynda.ru/
