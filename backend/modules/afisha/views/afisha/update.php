@@ -6,8 +6,8 @@ use app\modules\afisha\Module;
 /* @var $this yii\web\View */
 /* @var $model common\models\Afisha */
 
-$this->title = 'Изменить статью: ' . ' ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Статьи', 'url' => ['index']];
+$this->title = 'Изменить публикацию: ' . ' ' . $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Афиша', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Изменить';
 ?>

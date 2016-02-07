@@ -7,8 +7,8 @@ use app\modules\afisha\Module;
 /* @var $this yii\web\View */
 /* @var $model common\models\Afisha */
 
-$this->title = 'Создать статью';
-$this->params['breadcrumbs'][] = ['label' => 'Статьи', 'url' => ['index']];
+$this->title = 'Создать публикациию';
+$this->params['breadcrumbs'][] = ['label' => 'Афиша', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-create">

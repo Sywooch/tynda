@@ -75,7 +75,7 @@ use yii\web\JsExpression;
     <?= $form->field($model, 'publish')->widget(DatePicker::classname(), [
         'name' => 'dp_2',
         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-        'value' => $model->isNewRecord ? '' : $model->publish,
+        //'value' => $model->isNewRecord ? '' : $model->publish,
         'pluginOptions' => [
             'autoclose' => true,
             'format' => 'yyyy-mm-dd']]) ?>
@@ -83,7 +83,7 @@ use yii\web\JsExpression;
     <?= $form->field($model, 'unpublish')->widget(DatePicker::classname(), [
         'name' => 'dp_2',
         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-        'value' => $model->isNewRecord ? '' : $model->unpublish,
+        //'value' => $model->isNewRecord ? '' : $model->unpublish,
         'pluginOptions' => [
             'autoclose' => true,
             'format' => 'yyyy-mm-dd']]) ?>

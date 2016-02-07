@@ -18,6 +18,7 @@ class WeatherWidget// extends Widget
     public static function init()
     {
         $data = self::getJsonFile();
+
         if($data)return '<div class="weather">&nbsp;&nbsp;&nbsp;<span title="'.$data['type'].'"><i class="fa fa-umbrella"></i> &nbsp;'.$data['temp'].'</span></div>';
     }
 

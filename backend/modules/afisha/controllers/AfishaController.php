@@ -2,11 +2,11 @@
 
 namespace app\modules\afisha\controllers;
 
+use common\models\afisha\AfishaSearchBack;
 use Yii;
 use yii\helpers\Json;
 use yii\helpers\FileHelper;
 use common\models\afisha\Afisha;
-use common\models\afisha\AfishaSearch;
 use app\modules\afisha\Module;
 use yii\web\Controller;
 use yii\web\UploadedFile;
@@ -25,7 +25,7 @@ class AfishaController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
+            /*'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
@@ -34,7 +34,7 @@ class AfishaController extends Controller
                         'roles' => ['admin'],
                     ],
                 ],
-            ],
+            ],*/
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -50,7 +50,7 @@ class AfishaController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AfishaSearch();
+        $searchModel = new AfishaSearchBack();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,

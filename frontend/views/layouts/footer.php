@@ -68,6 +68,12 @@
                     <p>
                         2015 - <?= date('Y') ?> &copy;  Наша Тында. Все права защищены.
                         <a href="#">Политика использования</a> | <a href="#">Правила и соглашения</a>
+                        <?php
+                        $user = \Yii::$app->user->identity;
+                            if($user->username == 'denoll'){
+                                echo number_format(memory_get_usage()/1024/1024,3,',',' ').' | '. number_format(memory_get_peak_usage()/1024/1024,3,',',' ');
+                            }
+                        ?>
                     </p>
                 </div>
 

@@ -34,11 +34,12 @@ use \common\widgets\Arrays;
             </div>
             <div class="col-md-9">
 
-                <h2 style="font-size: 1.25em; margin: 3px 0px;">
+                <h2 style="font-size: 1.25em; line-height: 22px; margin: 10px 0px 0px 0px;">
                     <?= Html::a(Html::encode($model['title']), [Url::to('/letters/letters/view'),'cat'=>$model['cat']['alias'], 'id' => $model['alias']]) ?>
                 </h2>
-                <p style="margin: 2px 0;"><i class="small-text">Дата письма:&nbsp;<?= \Yii::$app->formatter->asDate($model['updated_at'], 'long') ?></i>
-                <span style="padding-left: 15px;"><i class="small-text">Категория:&nbsp;&nbsp;</i><strong><?=Html::a($model['cat']['name'],['/letters/letters/index','cat'=>$model['cat']['alias']])?></strong></span>
+                <p style="margin: 2px 0;"><i class="small-text">Дата:&nbsp;<strong><?= \Yii::$app->formatter->asDate($model['publish'], 'long') ?></strong></i>
+                    <span style="padding:0 6px;"><i class="small-text">Статус письма:&nbsp;&nbsp;</i><strong><?= Arrays::getLetterStage($model['stage'])?></strong></span>
+                <span style=""><i class="small-text">Категория:&nbsp;&nbsp;</i><strong><?=Html::a($model['cat']['name'],['/letters/letters/index','cat'=>$model['cat']['alias']])?></strong></span>
                 </p>
                 <p style="margin: 2px 0;"><?= $model['author'] ? '<i class="small-text">Автор:&nbsp;</i>'. $model['author'] : ''?></p>
                 <div style="text-align: justify;"><?= $model['short_text'] ;?></div>

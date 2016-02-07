@@ -29,7 +29,7 @@ AfishaAsset::register($this);
                     <div class="form-group">
                         <div class="btn-group">
                             <?= Html::a('<i class="fa fa-plus"></i> &nbsp;Создать объявление', ['create'], ['class' => 'btn btn-success']) ?>
-                            <?= Html::a('<i class="fa fa-list-alt"></i> &nbsp;Перейти к категориям афиши', Url::home() . 'afisha/afisha/category', ['class' => 'btn btn-default']) ?>
+                            <?= Html::a('<i class="fa fa-list-alt"></i> &nbsp;Перейти к категориям афиши', '/afisha/afisha-category/index', ['class' => 'btn btn-default']) ?>
                         </div>
                     </div>
                 </div>
