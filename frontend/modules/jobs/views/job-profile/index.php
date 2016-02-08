@@ -8,7 +8,7 @@ use \yii\jui\DatePicker;
 
 
 
-$this->title = 'Резюме';
+$this->title = 'Расширенные сведения о себе';
 $this->params['breadcrumbs'][] = ['label' => 'Мой профиль', 'url' => [Url::home() . 'profile/index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['left'] = true;
@@ -21,6 +21,7 @@ $this->params['left'] = true;
             <h1 class="panel-title" style="margin: 0px; font-size: 1.2em;"><?= Html::encode($this->title) ?></h1>
         </div>
         <div class="panel-body">
+            <?= \frontend\widgets\ProfileTextBlock::init('Для полноценного отображения Ваших данных в резюме, пожалуйста заполните расширенные сведения о себе, а также об образовании и об опыте работы.','Важно!') ?>
             <?= \frontend\widgets\ProfileMenu::Menu() ?>
 
             <br><br>

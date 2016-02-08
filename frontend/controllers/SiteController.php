@@ -153,12 +153,10 @@ class SiteController extends Controller
             if ($user = $model->signup()) {
                 if (Yii::$app->user->login($user,3600 * 24 * 30) ) {
                     Yii::$app->session->setFlash('success', '<h4>Вы успешно зарегистрировались на сайте.</h4>');
-                    Yii::$app->session->setFlash('info', '<h3>Для корректного отображения объявлений, пожалуйста, заполните расширенные сведения о себе.</h3>');
                     return $this->redirect(['/profile/default/index']);
                 }
             }
         }
-
         return $this->render('signup', [
             'model' => $model,
         ]);

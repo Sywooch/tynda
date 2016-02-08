@@ -32,7 +32,11 @@ class ProfileMenu extends Widget
         $path = Url::current();
         $user = Yii::$app->user->getIdentity();
         $menu = '<div style="display: block; margin-bottom: 5px;">';
-
+        if(stristr($path, 'jobs/index')){
+            $menu .= Html::a('Расширенные сведения о себе', [Url::home() . 'jobs/job-profile/index'], ['class' => 'btn-u btn-u-dark-blue']);
+        }else{
+            $menu .= Html::a('Расширенные сведения о себе', [Url::home() . 'jobs/job-profile/index'], ['class' => 'btn-u btn-u-default']);
+        }
         if(stristr($path, 'jobs/edu')){
             $menu .= Html::a('Сведения об образовании', [Url::home() . 'jobs/edu'], ['class' => 'btn-u btn-u-dark-blue']);
         }else{
