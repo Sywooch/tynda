@@ -45,290 +45,320 @@ use Imagine\Image\Point;
  */
 class User extends ActiveRecord implements IdentityInterface //ActiveRecord implements IdentityInterface
 {
-    const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 10;
+	const STATUS_DELETED = 0;
+	const STATUS_ACTIVE = 10;
 
-    public $old_password;
-    public $password;
-    public $image;
-    public $crop_info;
+	public $old_password;
+	public $password;
+	public $image;
+	public $crop_info;
 
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'user';
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public static function tableName()
+	{
+		return 'user';
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::className(),
-        ];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function behaviors()
+	{
+		return [
+			TimestampBehavior::className(),
+		];
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['status', 'rating', 'count_fm', 'count_ft', 'company', 'doctor'], 'integer'],
+	/**
+	 * @inheritdoc
+	 */
+	public function rules()
+	{
+		return [
+			[['username','tel','email','name','surname','patronym'], 'required'],
 
-            [['updated_at', 'created_at'], 'safe'],
+			[['username', 'email', 'tel'], 'unique'],
 
-            [['username'], 'string', 'min' => 2, 'max' => 50],
-            [['account'], 'number'],
-            [['name', 'surname', 'patronym', 'lat', 'long', 'avatar'], 'string', 'max' => 50],
-            [['ip'], 'string', 'max' => 45],
-	        [['flags'], 'string', 'max' => 5],
-            [['tel'], 'string', 'max' => 15],
-            [['auth_key'], 'string', 'max' => 32],
-            [['country','region','city','password_hash'], 'string', 'max' => 60],
-            [['email'], 'email', 'message' => 'Это не похоже на e-mail адрес.'],
+			['email', 'email', 'message' => 'Это не похоже на e-mail адрес.'],
 
-            [['username', 'email'], 'filter', 'filter' => 'trim'],
-            [['username','email','password',], 'filter', 'filter' => 'strip_tags'],
-            [['username', 'email'], 'required'],
-            [['username', 'email', 'tel'], 'unique'],
-            [['tel'], 'match', 'pattern'=>'/^(\+7)\d{10,10}$/', 'message' => 'Номер мобильного телефона должен иметь вид "+79047771199".'],
+			[['status', 'rating', 'count_fm', 'count_ft', 'company', 'doctor'], 'integer'],
+			[['account'], 'number'],
 
-            [['password_reset_token'], 'string', 'max' => 60],
-            [
-                ['image'],
-                'image',
-                'extensions' => ['jpg', 'jpeg', 'png', 'gif'],
-                'mimeTypes' => ['image/jpeg', 'image/pjpeg', 'image/png', 'image/gif'],
-            ],
-            ['crop_info', 'safe'],
-        ];
-    }
+			[['crop_info', 'updated_at', 'created_at'], 'safe'],
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'password'=>'Пароль',
-            'old_password'=>'Старый пароль',
-            'id' => 'ID',
-            'username' => self::isCompany() ? 'Компания' : 'Логин',
-            'email' => 'Email',
-            'tel'=>'Тел',
-            'name' => 'Имя',
-            'surname' => 'Фамилия',
-            'patronym' => 'Отчество',
-            'account' => 'Баланс',
-            'confirmed_at' => 'Дата подтверждения',
-            'blocked_at' => 'Дата блокировки',
-            'status' => 'Статус',
-            'company' => 'Как организация',
-            'doctor' => 'Вы доктор',
-            'created_at' => 'Дата регистрации',
-            'updated_at' => 'Дата изменения',
-            'rating' => 'Рейтинг',
-            'flags' => 'Флаг',
-	        'country' => 'Страна',
-	        'region' => 'Регион',
-	        'city' => 'Нас. пункт (город или др.)',
-            'lat' => 'Широта',
-            'long' => 'Долгота',
-            'ip' => 'IP адрес',
-            'avatar' => 'Аватар',
-            'count_fm' => 'Написал сообщений на форуме',
-            'count_ft' => 'Создал тем на форуме',
-            'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
-        ];
-    }
+			[['username', 'name', 'surname', 'patronym', 'avatar'], 'string', 'min' => 2, 'max' => 50],
+			[['auth_key'], 'string', 'max' => 32],
+			[['country', 'region', 'city', 'password_hash', 'password_reset_token'], 'string', 'max' => 60],
 
-    public static function isAdmin(){
-        if(!Yii::$app->user->isGuest){
-            $user = Yii::$app->user->getIdentity();
-            $admin = \Yii::$app->authManager->getAssignment('admin',$user->getId());
-            return $admin; // возвращает false или true
-        }else{
-            return false;
-        }
-    }
+			//['password', 'required', 'message' => 'Введите пароль (мин. 6 символов)'],
+			[['password'], 'string', 'min' => 6, 'message' => 'Пароль должен содержать не менее 6 символов.'],
 
-    public static function isCompany(){
-        $user = Yii::$app->user->getIdentity();
-        if($user->company == 1){
-            return true;
-        }else{
-            return false;
-        }
-    }
+			[['username','name','surname','patronym','password'], 'filter', 'filter' => 'trim'],
+			[['username', 'name', 'surname', 'patronym','password','old_password'], 'filter', 'filter' => 'strip_tags'],
 
-    public function validatePassword($password)
-    {
-        return Yii::$app->security->validatePassword($password, $this->password_hash);
-    }
+			[['tel'], 'match', 'pattern'=>'/^(\+7)\d{10,10}$/', 'message' => 'Номер мобильного телефона должен иметь вид "+79047771199".'],
 
-    public function setNewPassword($new_password)
-    {
-        try{
-            $this->password_hash = Yii::$app->security->generatePasswordHash($new_password);
-            return true;
-        }catch (InvalidParamException $e){
-            print_r($e);
-            return false;
-        }
-    }
+			[
+				['image'],
+				'image',
+				'extensions' => ['jpg', 'jpeg', 'png', 'gif'],
+				'mimeTypes' => ['image/jpeg', 'image/pjpeg', 'image/png', 'image/gif'],
+				'maxSize' => 1024 * 150,
+			],
+		];
+	}
 
-    /**
-     * Generates "remember me" authentication key
-     */
-    public function generateAuthKey()
-    {
-        $this->auth_key = Yii::$app->security->generateRandomString();
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function attributeLabels()
+	{
+		return [
+			'password' => 'Пароль',
+			'old_password' => 'Старый пароль',
+			'id' => 'ID',
+			'username' => self::isCompany() ? 'Компания' : 'Логин',
+			'email' => 'Email',
+			'tel' => 'Тел',
+			'name' => 'Имя',
+			'surname' => 'Фамилия',
+			'patronym' => 'Отчество',
+			'account' => 'Баланс',
+			'confirmed_at' => 'Дата подтверждения',
+			'blocked_at' => 'Дата блокировки',
+			'status' => 'Статус',
+			'company' => 'Как организация',
+			'doctor' => 'Вы доктор',
+			'created_at' => 'Дата регистрации',
+			'updated_at' => 'Дата изменения',
+			'rating' => 'Рейтинг',
+			'flags' => 'Флаг',
+			'country' => 'Страна',
+			'region' => 'Регион',
+			'city' => 'Нас. пункт (город или др.)',
+			'lat' => 'Широта',
+			'long' => 'Долгота',
+			'ip' => 'IP адрес',
+			'avatar' => 'Аватар',
+			'count_fm' => 'Написал сообщений на форуме',
+			'count_ft' => 'Создал тем на форуме',
+			'auth_key' => 'Auth Key',
+			'password_hash' => 'Password Hash',
+		];
+	}
 
-    /**
-     * @inheritdoc
-     * @return UserQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new UserQuery(get_called_class());
-    }
+	public static function isAdmin()
+	{
+		if (!Yii::$app->user->isGuest) {
+			$user = Yii::$app->user->getIdentity();
+			$admin = \Yii::$app->authManager->getAssignment('admin', $user->getId());
+			return $admin; // возвращает false или true
+		} else {
+			return false;
+		}
+	}
 
-    public function getAuth(){
-        return $this->hasMany(AuthAssignment::className(), ['user_id' => 'id']);
-    }
-    public function getEdu(){return $this->hasMany(UserEdu::className(), ['id_user' => 'id']);}
-    public function getExp(){return $this->hasMany(UserExp::className(), ['id_user' => 'id']);}
-    public function getResume(){return $this->hasMany(JobResume::className(), ['id_user' => 'id']);}
-    public function getProfile(){return $this->hasOne(JobProfile::className(), ['id_user' => 'id']);}
-    public function getCompany(){return $this->hasOne(Company::className(), ['id_user' => 'id']);}
-    public function afterSave($insert, $changedAttributes){parent::afterSave($insert, $changedAttributes);}
+	public static function isCompany()
+	{
+		$user = Yii::$app->user->getIdentity();
+		if ($user->company == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public static function findIdentity($id)
-    {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
-    }
+	public function validatePassword($password)
+	{
+		return Yii::$app->security->validatePassword($password, $this->password_hash);
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
-    }
+	public function setNewPassword($new_password)
+	{
+		try {
+			$this->password_hash = Yii::$app->security->generatePasswordHash($new_password);
+			return true;
+		} catch (InvalidParamException $e) {
+			print_r($e);
+			return false;
+		}
+	}
 
-    /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
-     */
-    public static function findByUsername($username)
-    {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
-    }
-    /**
-     * Finds user by username
-     *
-     * @param string $email
-     * @return static|null
-     */
-    public static function findByEmail($email)
-    {
-        return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
-    }
+	/**
+	 * Generates "remember me" authentication key
+	 */
+	public function generateAuthKey()
+	{
+		$this->auth_key = Yii::$app->security->generateRandomString();
+	}
 
-    /**
-     * Finds user by password reset token
-     *
-     * @param string $token password reset token
-     * @return static|null
-     */
-    public static function findByPasswordResetToken($token)
-    {
-        if (!static::isPasswordResetTokenValid($token)) {
-            return null;
-        }
+	/**
+	 * @inheritdoc
+	 * @return UserQuery the active query used by this AR class.
+	 */
+	public static function find()
+	{
+		return new UserQuery(get_called_class());
+	}
 
-        return static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
-        ]);
-    }
+	public function getAuth()
+	{
+		return $this->hasMany(AuthAssignment::className(), ['user_id' => 'id']);
+	}
 
-    /**
-     * Finds out if password reset token is valid
-     *
-     * @param string $token password reset token
-     * @return boolean
-     */
-    public static function isPasswordResetTokenValid($token)
-    {
-        if (empty($token)) {
-            return false;
-        }
+	public function getEdu()
+	{
+		return $this->hasMany(UserEdu::className(), ['id_user' => 'id']);
+	}
 
-        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
-        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
-        return $timestamp + $expire >= time();
-    }
+	public function getExp()
+	{
+		return $this->hasMany(UserExp::className(), ['id_user' => 'id']);
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function getId()
-    {
-        return $this->getPrimaryKey();
-    }
+	public function getResume()
+	{
+		return $this->hasMany(JobResume::className(), ['id_user' => 'id']);
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function getAuthKey()
-    {
-        return $this->auth_key;
-    }
+	public function getProfile()
+	{
+		return $this->hasOne(JobProfile::className(), ['id_user' => 'id']);
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function validateAuthKey($authKey)
-    {
-        return $this->getAuthKey() === $authKey;
-    }
+	public function getCompany()
+	{
+		return $this->hasOne(Company::className(), ['id_user' => 'id']);
+	}
 
-    /**
-     * Generates password hash from password and sets it to the model
-     *
-     * @param string $password
-     */
-    public function setPassword($password)
-    {
-        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
-    }
+	public function afterSave($insert, $changedAttributes)
+	{
+		parent::afterSave($insert, $changedAttributes);
+	}
 
-    /**
-     * Generates new password reset token
-     */
-    public function generatePasswordResetToken()
-    {
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public static function findIdentity($id)
+	{
+		return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+	}
 
-    /**
-     * Removes password reset token
-     */
-    public function removePasswordResetToken()
-    {
-        $this->password_reset_token = null;
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public static function findIdentityByAccessToken($token, $type = null)
+	{
+		throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+	}
+
+	/**
+	 * Finds user by username
+	 *
+	 * @param string $username
+	 * @return static|null
+	 */
+	public static function findByUsername($username)
+	{
+		return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+	}
+
+	/**
+	 * Finds user by username
+	 *
+	 * @param string $email
+	 * @return static|null
+	 */
+	public static function findByEmail($email)
+	{
+		return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
+	}
+
+	/**
+	 * Finds user by password reset token
+	 *
+	 * @param string $token password reset token
+	 * @return static|null
+	 */
+	public static function findByPasswordResetToken($token)
+	{
+		if (!static::isPasswordResetTokenValid($token)) {
+			return null;
+		}
+
+		return static::findOne([
+			'password_reset_token' => $token,
+			'status' => self::STATUS_ACTIVE,
+		]);
+	}
+
+	/**
+	 * Finds out if password reset token is valid
+	 *
+	 * @param string $token password reset token
+	 * @return boolean
+	 */
+	public static function isPasswordResetTokenValid($token)
+	{
+		if (empty($token)) {
+			return false;
+		}
+
+		$timestamp = (int)substr($token, strrpos($token, '_') + 1);
+		$expire = Yii::$app->params['user.passwordResetTokenExpire'];
+		return $timestamp + $expire >= time();
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function getId()
+	{
+		return $this->getPrimaryKey();
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function getAuthKey()
+	{
+		return $this->auth_key;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function validateAuthKey($authKey)
+	{
+		return $this->getAuthKey() === $authKey;
+	}
+
+	/**
+	 * Generates password hash from password and sets it to the model
+	 *
+	 * @param string $password
+	 */
+	public function setPassword($password)
+	{
+		$this->password_hash = Yii::$app->security->generatePasswordHash($password);
+	}
+
+	/**
+	 * Generates new password reset token
+	 */
+	public function generatePasswordResetToken()
+	{
+		$this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+	}
+
+	/**
+	 * Removes password reset token
+	 */
+	public function removePasswordResetToken()
+	{
+		$this->password_reset_token = null;
+	}
 
 }

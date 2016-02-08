@@ -21,7 +21,7 @@
 
 		<?= $form->field($user, 'old_password')->passwordInput()->label('Введите старый пароль') ?>
 
-		<?= $form->field($user, 'password')->passwordInput()->label('Введите новый пароль (минимум 4 символа)') ?>
+		<?= $form->field($user, 'password')->passwordInput()->label('Введите новый пароль (минимум 6 символов)') ?>
 
 		<? //= $form->field($user, 'password_repeat')->passwordInput() ?>
 

@@ -29,6 +29,7 @@ class SignupForm extends Model
             ['username', 'required', 'message' => 'Заполните пожалуйста поле.'],
             ['username', 'filter', 'filter' => 'trim'],
             //['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Такое имя уже используется.'],
+            [['surname', 'patronym'], 'required'],
             [['username', 'name', 'surname', 'patronym'], 'string', 'min' => 2, 'max' => 50],
             [['username', 'name', 'surname', 'patronym'], 'filter', 'filter' => 'strip_tags'],
 
@@ -44,6 +45,7 @@ class SignupForm extends Model
             [['password'], 'string', 'min' => 6, 'message' => 'Пароль должен содержать не менее 6 символов.'],
             ['password', 'filter', 'filter' => 'strip_tags'],
 
+            ['tel', 'required'],
             [['tel'], 'string', 'max' => 15],
             [['tel'], 'match', 'pattern'=>'/^(\+7)\d{10,10}$/', 'message' => 'Номер мобильного телефона должен иметь вид "+79047771199".'],
             ['tel', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Этот телефонный номер уже используется.'],
