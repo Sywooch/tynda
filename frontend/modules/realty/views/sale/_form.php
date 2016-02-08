@@ -16,7 +16,7 @@ use kartik\widgets\FileInput;
 /* @var $model common\models\goods\Goods */
 /* @var $form yii\widgets\ActiveForm */
 $this->params['left'] = true;
-$label = 'Выберите новое фото и подгоните выбраный файл под размер с помощью колесика мышки.';
+$label = \app\helpers\Texts::TEXT_CORRECT_IMAGE;
 
 ?>
 

@@ -29,7 +29,7 @@ if(!stristr($path, 'site')){
         if(stristr($path, 'account/')){
             echo ProfileLeftSidebar::showSidebar(0);
         }
-        if(stristr($path, 'profile/index')){
+        if(stristr($path, 'profile/index') || stristr($path, 'profile/change-avatar')){
             echo ProfileLeftSidebar::showSidebar(1);
         }
         if(stristr($path, 'profile/company')){

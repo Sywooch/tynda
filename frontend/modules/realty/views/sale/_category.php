@@ -15,7 +15,6 @@ use yii\helpers\Url;
         <div class="panel panel-default" style="margin-bottom: 5px;">
             <div class="panel-heading" style=" padding: 5px 5px 5px 12px;">
                 <h1 class="panel-title" style="display: inline-table; font-size: 1.3em;">Категория:&nbsp;&nbsp;<?= Html::encode($this->title) ?></h1>
-                <?= Html::a('<i class="fa fa-plus"></i>&nbsp;&nbsp;Подать объявление', [Url::to('/realty/sale/create')], ['class' => 'btn btn-success pull-right']) ?>
             </div>
             <?php if (!empty($first_child)) { ?>
                 <div class="panel-body" style=" padding: 5px 12px 12px 12px;">

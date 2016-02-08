@@ -62,12 +62,12 @@ use common\models\goods\GoodsCat;
                 <?= $form->field($model, 'image')->widget(Cropbox::className(), [
                     'attributeCropInfo' => 'crop_info',
                     'pluginOptions' => [
-                        'width' => 350,
-                        'height' => 350,
+                        'width' => \common\widgets\Arrays::IMG_SIZE_WIDTH + 50,
+                        'height' => \common\widgets\Arrays::IMG_SIZE_HEIGHT + 50,
                         'variants' => [
                             [
-                                'width' => 250,
-                                'height' => 250,
+                                'width' => \common\widgets\Arrays::IMG_SIZE_WIDTH,
+                                'height' => \common\widgets\Arrays::IMG_SIZE_HEIGHT,
                             ],
                         ],
                     ],

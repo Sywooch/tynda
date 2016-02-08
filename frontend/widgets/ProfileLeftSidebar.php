@@ -75,13 +75,11 @@ class ProfileLeftSidebar extends Widget
         echo '<div class="profile_avatar">';
         echo '<div class="avatar thumbnail" style="position: relative; margin: 5px 0px;">';
         echo Avatar::init('100%');
-        if($a_1 == 'active'){
             if(User::isCompany()){
-                echo Html::a('редактировать логотип',[Url::home() . 'profile/change-avatar'],['class'=>'btn btn-xs btn-default', 'style'=>'position: absolute; bottom: 5px; left:5px; z-index: 2;']);
+                echo Html::a('редактировать логотип',['/profile/change-avatar'],['class'=>'btn btn-xs btn-default', 'style'=>'position: absolute; bottom: 5px; left:5px; z-index: 2;']);
             }else{
-                echo Html::a('редактировать аватар',[Url::home() . 'profile/change-avatar'],['class'=>'btn btn-xs btn-default', 'style'=>'position: absolute; bottom: 5px; left:5px; z-index: 2;']);
+                echo Html::a('редактировать аватар',['/profile/change-avatar'],['class'=>'btn btn-xs btn-default', 'style'=>'position: absolute; bottom: 5px; left:5px; z-index: 2;']);
             }
-        }
 
         echo '</div>';
         echo '</div>';
@@ -135,9 +133,9 @@ class ProfileLeftSidebar extends Widget
         echo '<li class="list-group-item ' . $a_11 . '">';
         echo '<a href="' . Url::Home() . 'realty/rent/my-ads"><i class="fa fa-building"></i>&nbsp;&nbsp;Мои объявления об аренде недвижимости</a>';
         echo '</li>';
-        echo '<li class="list-group-item ' . $a_12 . '">';
-        echo '<a href="' . Url::Home() . 'auto/my-ads"><i class="fa fa-car"></i>&nbsp;&nbsp;Мои объявления об авто</a>';
-        echo '</li>';
+        //echo '<li class="list-group-item ' . $a_12 . '">';
+        //echo '<a href="' . Url::Home() . 'auto/my-ads"><i class="fa fa-car"></i>&nbsp;&nbsp;Мои объявления об авто</a>';
+        //echo '</li>';
 
 
         echo '</ul>';

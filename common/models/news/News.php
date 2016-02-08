@@ -16,6 +16,7 @@ use Imagine\Image\Box;
 use Imagine\Image\Point;
 use yii\web\UploadedFile;
 use common\models\tags\Tags;
+use common\widgets\Arrays;
 
 /**
  * This is the model class for table "news".
@@ -205,17 +206,17 @@ class News extends \yii\db\ActiveRecord
             // open image
             $image = Image::getImagine()->open($this->image->tempName);
 
-            $variants = [
-                [
-                    'width' => 250,
-                    'height' => 250,
-                ],
-            ];
+
 
             // rendering information about crop of ONE option
             $cropInfo = Json::decode($this->crop_info)[0];
-            $cropInfo['dWidth'] = (int)$cropInfo['dWidth']; //new width image
-            $cropInfo['dHeight'] = (int)$cropInfo['dHeight']; //new height image
+            if((int)$cropInfo['dWidth'] == 0 || (int)$cropInfo['dHeight'] == 0){
+                $cropInfo['dWidth'] = Arrays::IMG_SIZE_WIDTH; //new width image
+                $cropInfo['dHeight'] = Arrays::IMG_SIZE_HEIGHT; //new height image
+            }else{
+                $cropInfo['dWidth'] = (int)$cropInfo['dWidth']; //new width image
+                $cropInfo['dHeight'] = (int)$cropInfo['dHeight']; //new height image
+            }
             $cropInfo['x'] = $cropInfo['x']; //begin position of frame crop by X
             $cropInfo['y'] = $cropInfo['y']; //begin position of frame crop by Y
 
@@ -234,7 +235,7 @@ class News extends \yii\db\ActiveRecord
 
             //saving thumbnail
             $newSizeThumb = new Box($cropInfo['dWidth'], $cropInfo['dHeight']);
-            $cropSizeThumb = new Box(250, 250); //frame size of crop
+            $cropSizeThumb = new Box(Arrays::IMG_SIZE_WIDTH, Arrays::IMG_SIZE_HEIGHT); //frame size of crop
             $cropPointThumb = new Point($cropInfo['x'], $cropInfo['y']);
             $pathThumbImage = Yii::getAlias('@frt_dir/img/news/') . 'thumb_'. $imgName;
 

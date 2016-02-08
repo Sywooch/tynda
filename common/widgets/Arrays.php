@@ -22,6 +22,9 @@ class Arrays
     const IMG_MAX_HEIGHT = 480;
     const IMG_MAX_WIDTH = 640;
 
+    const IMG_SIZE_HEIGHT = 200;
+    const IMG_SIZE_WIDTH = 200;
+
     const CASH_TIME = 3600; //в секундах 60*60 = 3600 = 1 час
 
 

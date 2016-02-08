@@ -48,12 +48,12 @@ $label = 'Выберите новое фото и подгоните выбра�
         <?= $form->field($model, 'image')->widget(Cropbox::className(), [
             'attributeCropInfo' => 'crop_info',
             'pluginOptions' => [
-                'width' => 350,
-                'height' => 350,
+                'width' => Arrays::IMG_SIZE_WIDTH + 100,
+                'height' => Arrays::IMG_SIZE_HEIGHT + 100,
                 'variants' => [
                     [
-                        'width' => 250,
-                        'height' => 250,
+                        'width' => Arrays::IMG_SIZE_WIDTH,
+                        'height' => Arrays::IMG_SIZE_HEIGHT,
                     ],
                 ],
             ],

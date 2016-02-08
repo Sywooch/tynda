@@ -7,13 +7,13 @@ use common\models\users\User;
 
 if(User::isCompany()){
     $this->title = 'Изменение логотипа:  ' . $model->username;
-    $label = 'Выберите логотип и подгоните выбраный файл под размер с помощью колесика мышки.';
+    $label = \app\helpers\Texts::TEXT_CORRECT_LOGO;
 }else{
     $this->title = 'Изменение Аватара:  ' . $model->username;
-    $label = 'Выберите новый аватар и подгоните выбраный файл под размер с помощью колесика мышки.';
+    $label = \app\helpers\Texts::TEXT_CORRECT_AVATAR;
 }
 $this->params['left'] = true;
-
+$this->params['right'] = true;
 $this->params['breadcrumbs'][] = ['label' => 'Профиль пользователя', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $labels = $model->attributeLabels();
@@ -32,12 +32,12 @@ $labels = $model->attributeLabels();
                     <?= $form->field($model, 'image')->widget(Cropbox::className(), [
                         'attributeCropInfo' => 'crop_info',
                         'pluginOptions' => [
-                            'width' => 250,
-                            'height' => 250,
+                            'width' => \common\widgets\Arrays::IMG_SIZE_WIDTH,
+                            'height' => \common\widgets\Arrays::IMG_SIZE_HEIGHT,
                             'variants' => [
                                 [
-                                    'width' => 250,
-                                    'height' => 250,
+                                    'width' => \common\widgets\Arrays::IMG_SIZE_WIDTH,
+                                    'height' => \common\widgets\Arrays::IMG_SIZE_HEIGHT,
                                 ],
                             ],
                         ],

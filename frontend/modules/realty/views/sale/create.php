@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\goods\Goods */
 
-$this->title = 'Новое объявление об услуге';
+$this->title = 'Новое объявление о продаже недвижимости';
 $this->params['breadcrumbs'][] = ['label' => 'Мои объявления', 'url' => ['my-ads']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

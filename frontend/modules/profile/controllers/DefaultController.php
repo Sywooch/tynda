@@ -5,6 +5,7 @@ namespace app\modules\profile\controllers;
 use common\models\users\Company;
 use Yii;
 use common\models\users\User;
+use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -16,7 +17,7 @@ use yii\helpers\Json;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
 use yii\filters\AccessControl;
-
+use common\widgets\Arrays;
 /**
  * DefaultController implements the CRUD actions for User model.
  */
@@ -102,58 +103,61 @@ class DefaultController extends Controller
 		$model = self::findUser();
 		$post = \Yii::$app->request->post();
 		if ($model->load($post)) {
-			$_image = \yii\web\UploadedFile::getInstance($model, 'image');
-			if ($model->validate()) {
+			try{
+				$_image = \yii\web\UploadedFile::getInstance($model, 'image');
+				if ($model->validate()) {
 
-				// open image
-				$image = Image::getImagine()->open($_image->tempName);
+					// open image
+					$image = Image::getImagine()->open($_image->tempName);
 
-				$variants = [
-					[
-						'width' => 250,
-						'height' => 250,
-					],
-				];
+					// rendering information about crop of ONE option
+					$cropInfo = Json::decode($post['User']['crop_info'])[0];
+					if((int)$cropInfo['dWidth'] == 0 || (int)$cropInfo['dHeight'] == 0){
+						$cropInfo['dWidth'] = Arrays::IMG_SIZE_WIDTH; //new width image
+						$cropInfo['dHeight'] = Arrays::IMG_SIZE_HEIGHT; //new height image
+					}else{
+						$cropInfo['dWidth'] = (int)$cropInfo['dWidth']; //new width image
+						$cropInfo['dHeight'] = (int)$cropInfo['dHeight']; //new height image
+					}
+					$cropInfo['x'] = $cropInfo['x']; //begin position of frame crop by X
+					$cropInfo['y'] = $cropInfo['y']; //begin position of frame crop by Y
 
-				// rendering information about crop of ONE option
-				$cropInfo = Json::decode($post['User']['crop_info'])[0];
-				$cropInfo['dWidth'] = (int)$cropInfo['dWidth']; //new width image
-				$cropInfo['dHeight'] = (int)$cropInfo['dHeight']; //new height image
-				$cropInfo['x'] = $cropInfo['x']; //begin position of frame crop by X
-				$cropInfo['y'] = $cropInfo['y']; //begin position of frame crop by Y
+					//delete old images
+					$oldImages = FileHelper::findFiles(Yii::getAlias('@frt_dir/img/avatars/'), [
+						'only' => [
+							$model->id . '.*',
+							'thumb_' . $model->id . '.*',
+						],
+					]);
+					for ($i = 0; $i != count($oldImages); $i++) {
+						@unlink($oldImages[$i]);
+					}
+					//avatar image name
+					$imgName = $model->id . '.' . $_image->getExtension();
 
-				//delete old images
-				$oldImages = FileHelper::findFiles(Yii::getAlias('@frt_dir/img/avatars/'), [
-					'only' => [
-						$model->id . '.*',
-						'thumb_' . $model->id . '.*',
-					],
-				]);
-				for ($i = 0; $i != count($oldImages); $i++) {
-					@unlink($oldImages[$i]);
+					//saving thumbnail
+					$newSizeThumb = new Box($cropInfo['dWidth'], $cropInfo['dHeight']);
+					$cropSizeThumb = new Box(Arrays::IMG_SIZE_WIDTH, Arrays::IMG_SIZE_HEIGHT); //frame size of crop
+					$cropPointThumb = new Point($cropInfo['x'], $cropInfo['y']);
+					$pathThumbImage = Yii::getAlias('@frt_dir/img/avatars/') . $imgName;
+
+					$image->resize($newSizeThumb)
+						->crop($cropPointThumb, $cropSizeThumb)
+						->save($pathThumbImage, ['quality' => 100]);
+
+					//save in database
+					$model = User::findOne($model->id);
+					$model->avatar = $imgName;
 				}
-				//avatar image name
-				$imgName = $model->id . '.' . $_image->getExtension();
-
-				//saving thumbnail
-				$newSizeThumb = new Box($cropInfo['dWidth'], $cropInfo['dHeight']);
-				$cropSizeThumb = new Box(250, 250); //frame size of crop
-				$cropPointThumb = new Point($cropInfo['x'], $cropInfo['y']);
-				$pathThumbImage = Yii::getAlias('@frt_dir/img/avatars/') . $imgName;
-
-				$image->resize($newSizeThumb)
-					->crop($cropPointThumb, $cropSizeThumb)
-					->save($pathThumbImage, ['quality' => 100]);
-
-				//save in database
-				$model = User::findOne($model->id);
-				$model->avatar = $imgName;
+				if ($model->save()) {
+					Yii::$app->session->setFlash('success', 'Новый аватар успешно установлен.');
+				} else {
+					Yii::$app->session->setFlash('danger', 'Аватар не изменен.');
+				}
+			}catch ( Exception $ex){
+				Yii::$app->session->setFlash('danger', 'Аватар не установлен (Вы не нажали кнопку "Вырезать").');
 			}
-			if ($model->save()) {
-				Yii::$app->session->setFlash('success', 'Новый аватар успешно установлен.');
-			} else {
-				Yii::$app->session->setFlash('danger', 'Аватар не изменен.');
-			}
+
 			return $this->redirect('index');
 		} else {
 			return $this->render('change-avatar', [
