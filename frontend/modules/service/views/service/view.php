@@ -33,23 +33,20 @@ if(!empty($parent_cat)){
 if(!empty($cur_cat)) {
     $this->params['breadcrumbs'][] = ['label' =>  $cur_cat['name'], 'url' => ['index', 'cat'=>$cur_cat['alias']]];
 }
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 $user = Yii::$app->user->getIdentity();
 ?>
 <div class="goods-view">
-    <div class="form-group">
-        <?= Html::a('<i class="fa fa-reply"></i>&nbsp;&nbsp;Назад к списку услуг', [Url::to('/service/service/index')], ['class' => 'btn btn-default',]) ?>
-        <?php if ($user->id === $model['id_user']) { ?>
-            <?= Html::a('<i class="fa fa-edit"></i>&nbsp;&nbsp;Редактировать это объявление', [Url::to('/service/service/update'), 'id' => $model['id']], ['class' => 'btn btn-primary']) ?>
-        <?php } ?>
-        <?= Html::a('<i class="fa fa-plus"></i>&nbsp;&nbsp;Подать объявление', [Url::to('/service/service/create')], ['class' => 'btn btn-success']) ?>
-    </div>
-
-    <div class="row">
+    <div class="row" style="padding-top: 10px;">
         <div class="col-sm-3 side_left">
             <div class="thumbnail" style="padding: 2px;"><?= Avatar::imgService($model['main_img'], '100%') ?></div>
         </div>
         <div class="col-sm-9">
+            <div class="form-group">
+                <?php if ($user->id === $model['id_user']) { ?>
+                    <?= Html::a('<i class="fa fa-edit"></i>&nbsp;&nbsp;Редактировать это объявление', [Url::to('/service/service/update'), 'id' => $model['id']], ['class' => 'btn btn-primary']) ?>
+                <?php } ?>
+            </div>
             <?php if ($model['company']) { ?>
                 <h4><i class="small-text" style="font-size: 0.7em;">Продавец:</i><strong style="font-size: 0.9em; font-style: italic;"><?= $model['username'] ?></strong></h4>
                 <h4><i class="small-text" style="font-size: 0.7em;">Контактное лицо:</i><strong style="font-size: 0.9em; font-style: italic;"><?= $model['fio'] ?></strong></h4>

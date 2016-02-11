@@ -36,18 +36,11 @@ if(!empty($parent_cat)){
 if(!empty($cur_cat)) {
     $this->params['breadcrumbs'][] = ['label' =>  $cur_cat['name'], 'url' => ['index', 'cat'=>$cur_cat['alias']]];
 }
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 $user = Yii::$app->user->getIdentity();
 $path = Url::to('@frt_url/img/realty_rent/');
 ?>
 <div class="goods-view">
-    <div class="form-group">
-        <?php if ($user->id === $model['id_user']) { ?>
-            <?= Html::a('<i class="fa fa-edit"></i>&nbsp;&nbsp;Редактировать это объявление', [Url::to('/realty/rent/update'), 'id' => $model['id']], ['class' => 'btn btn-primary']) ?>
-        <?php } ?>
-        <?= Html::a('<i class="fa fa-plus"></i>&nbsp;&nbsp;Подать объявление', [Url::to('/realty/rent/create')], ['class' => 'btn btn-success']) ?>
-    </div>
-
     <div class="row">
         <div class="col-sm-12">
             <h1><strong style="font-size: 0.9em; font-style: italic;"><?= $model['name'] ?></strong></h1>
@@ -56,6 +49,9 @@ $path = Url::to('@frt_url/img/realty_rent/');
             <div class="thumbnail" style="padding: 2px;"><?= AdsSlider::run($path,$images, '100%') ?></div>
         </div>
         <div class="col-sm-5">
+            <?php if ($user->id === $model['id_user']) { ?>
+                <?= Html::a('<i class="fa fa-edit"></i>&nbsp;&nbsp;Редактировать это объявление', [Url::to('/realty/rent/update'), 'id' => $model['id']], ['class' => 'btn btn-primary']) ?>
+            <?php } ?>
             <?php if ($model['company']) { ?>
                 <h4><i class="small-text" style="font-size: 0.7em;">Продавец:</i><br><strong style="font-size: 0.9em; font-style: italic;"><?= $model['username'] ?></strong></h4>
                 <h4><i class="small-text" style="font-size: 0.7em;">Контактное лицо:</i><br><strong style="font-size: 0.9em; font-style: italic;"><?= $model['fio'] ?></strong></h4>

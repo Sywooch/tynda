@@ -3,10 +3,20 @@
 use yii\helpers\Url;
 use common\models\slider\SliderMain;
 use \common\widgets\Arrays;
+use app\widgets\DbText;
 $this->title = 'Наша тында';
 
 ?>
 <div class="site-index row" style="margin-top: 10px; margin-bottom: 20px;">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 shadow-wrapper">
+				<div class="tag-box tag-box-v1 box-shadow shadow-effect-2">
+					<?= DbText::widget(['key' => 'text-on-main-comming-soon']) ?>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-7 side_left">
@@ -19,14 +29,14 @@ $this->title = 'Наша тында';
 	</div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-4 side_left" style="margin-top: 10px;">
-				<?= \frontend\widgets\ForumMainWidget::show(); ?>
+			<div class="col-md-4" style="margin-top: 10px;">
+				<?= \frontend\widgets\AfishaMainWidget::show(); ?>
 			</div>
 			<div class="col-md-4 side_left" style="margin-top: 10px;">
 				<?= \frontend\widgets\LettersMainWidget::show(); ?>
 			</div>
-			<div class="col-md-4" style="margin-top: 10px;">
-				<?= \frontend\widgets\AfishaMainWidget::show(); ?>
+			<div class="col-md-4 side_left" style="margin-top: 10px;">
+				<?= \frontend\widgets\ForumMainWidget::show(); ?>
 			</div>
 		</div>
 	</div>

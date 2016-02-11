@@ -116,6 +116,8 @@ use yii\bootstrap\NavBar;
 				<a href="#"><i class="fa fa-diamond"></i><span class="nav-label">Разное</span><span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
 					<li><?= Html::a('<i class="fa fa-camera"></i> Фото на главной',['/slider/slider/index']) ?></li>
+					<li><?= Html::a('<i class="fa fa-font"></i> Текстовые вставки',['/text/text/index']) ?></li>
+					<li><?= Html::a('<i class="fa fa-edge"></i> Кэш',['/cache/cache/index']) ?></li>
 				</ul>
 			</li>
 			<li>

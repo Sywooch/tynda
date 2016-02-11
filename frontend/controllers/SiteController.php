@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\widgets\captcha\Captcha;
 use Yii;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -150,11 +151,18 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->user->login($user,3600 * 24 * 30) ) {
-                    Yii::$app->session->setFlash('success', '<h4>Вы успешно зарегистрировались на сайте.</h4>');
-                    return $this->redirect(['/profile/default/index']);
+            $captcha = new Captcha();
+            $resp = $captcha->init(Yii::$app->request->post());
+
+            if($resp){
+                if ($user = $model->signup()) {
+                    if (Yii::$app->user->login($user,3600 * 24 * 30) ) {
+                        Yii::$app->session->setFlash('success', '<h4>Вы успешно зарегистрировались на сайте.</h4>');
+                        return $this->redirect(['/profile/default/index']);
+                    }
                 }
+           }else{
+                Yii::$app->session->setFlash('success', '<h4>Вы не прошли проверку капчи.</h4>');
             }
         }
         return $this->render('signup', [

@@ -28,15 +28,11 @@ if(!empty($parent_cat)){
     }
 }
 $this->params['breadcrumbs'][] = ['label' => $cur_cat['name'], 'url' => [Url::to('/goods/goods/index'), 'cat'=>$cur_cat['alias']]];
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 $user = Yii::$app->user->getIdentity();
 ?>
 <div class="goods-view">
     <div class="form-group">
-        <?= Html::a('<i class="fa fa-reply"></i>&nbsp;&nbsp;Назад к списку товаров', [Url::to('/goods/goods/index')], ['class' => 'btn btn-default',]) ?>
-        <?php if ($user->id === $model['id_user']) { ?>
-            <?= Html::a('<i class="fa fa-edit"></i>&nbsp;&nbsp;Редактировать это объявление', [Url::to('/goods/goods/update'), 'id' => $model['id']], ['class' => 'btn btn-primary']) ?>
-        <?php } ?>
     </div>
 
     <div class="row">
@@ -44,6 +40,11 @@ $user = Yii::$app->user->getIdentity();
             <div class="thumbnail" style="padding: 2px;"><?= Avatar::imgGoods($model['main_img'], '100%') ?></div>
         </div>
         <div class="col-sm-9">
+            <div class="form-group">
+                <?php if ($user->id === $model['id_user']) { ?>
+                    <?= Html::a('<i class="fa fa-edit"></i>&nbsp;&nbsp;Редактировать это объявление', [Url::to('/goods/goods/update'), 'id' => $model['id']], ['class' => 'btn btn-primary']) ?>
+                <?php } ?>
+            </div>
             <?php if ($model['company']) { ?>
                 <h4><i class="small-text" style="font-size: 0.7em;">Продавец:</i><strong style="font-size: 0.9em; font-style: italic;"><?= $model['username'] ?></strong></h4>
                 <h4><i class="small-text" style="font-size: 0.7em;">Контактное лицо:</i><strong style="font-size: 0.9em; font-style: italic;"><?= $model['fio'] ?></strong></h4>

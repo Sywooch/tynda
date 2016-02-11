@@ -23,6 +23,7 @@ return [
 
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'cache' => require(__DIR__.'/_cache.php'),
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

@@ -13,6 +13,7 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+        'frontendCache' => require(Yii::getAlias('@frontend/config/_cache.php')),
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
