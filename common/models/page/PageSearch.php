@@ -77,6 +77,15 @@ class PageSearch extends Page
             return $dataProvider;
         }
 
+        if(!empty($cat)){
+            $leaves = PageCat::getLeavesNodesByAlias($cat);
+            foreach($leaves as $leav){
+                $cat_id[] = $leav['id'];
+            }
+            $cats = implode(',',$cat_id);
+            $query->andWhere('id_cat IN ('.$cats.')');
+        }
+
         $query->andFilterWhere([
             'id' => $this->id,
             'id_cat' => $this->id_cat,

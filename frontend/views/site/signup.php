@@ -70,10 +70,13 @@ $this->title = 'Регистрация';
 						<?= $form->field($model, 'patronym')->label('Отчество') ?>
 					</div>
 
-					<div class="col-sm-6 no-side">
+					<div class="col-sm-12 no-side" style="display: block; content: ' ';">
 						<i>Докажите что Вы не робот :-)</i>
 						<div class="g-recaptcha" data-sitekey="<?= \common\widgets\captcha\Captcha::getKey() ?>"></div>
 						<br>
+					</div>
+					<div class="col-sm-12 no-side" style="padding: 3px;">
+						<i class="small-text">Нажимая кнопку зарегистрироваться Вы даете свое <?= Html::a('согласие на использование персональных данных', ['/page/page/view','id'=>'soglasie-na-obrabotku-personalnyh-dannyh-polzovatelej'],['target'=>'_blank']) ?>. </i>
 					</div>
 
 					<div class="form-group">

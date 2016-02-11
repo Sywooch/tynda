@@ -113,7 +113,6 @@ AppAsset::register($this);
                         clickmap:true,
                         trackLinks:true,
                         accurateTrackBounce:true,
-                        webvisor:true,
                         trackHash:true
                     });
                 } catch(e) { }
