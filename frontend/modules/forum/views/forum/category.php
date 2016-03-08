@@ -46,7 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'btn-u btn-xs btn-brd btn-u-default',
                     ]) ?>
                 <?php } else { ?>
-                    <h5 style="margin: 0px 3px;">Зарегистрируйтесь, и Вы сможете создавать новые темы и оставлять сообщения.</h5>
+                    <div class="tag-box tag-box-v4">
+                        <h4 style="text-align: center;">Зарегистрируйтесь, и Вы сможете создавать новые темы и оставлять сообщения.</h4>
+                    </div>
+
                 <?php } ?>
             </div>
 

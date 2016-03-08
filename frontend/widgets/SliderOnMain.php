@@ -27,7 +27,7 @@ class SliderOnMain extends Widget
             $dependency = new DbDependency();
             $dependency->sql = 'SELECT MAX(id) FROM slider_main';
             $images = SliderMain::getDb()->cache(function ($db){
-                return SliderMain::find()->asArray()->where(['status'=>1])->all();
+                return SliderMain::find()->asArray()->where(['status'=>1])->andWhere(['IS NOT', 'img', null])->orderBy('id DESC')->all();
             }, Arrays::CASH_TIME, $dependency);
 
 

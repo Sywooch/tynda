@@ -61,8 +61,8 @@ class JobResume extends ActiveRecord
     public function rules()
     {
         return [
+            [['title','employment'], 'required'],
             [['id_user', 'top', 'vip','employment'], 'integer'],
-            [['title'], 'required'],
             [['status'], 'boolean'],
             [['salary'], 'number'],
             [['created_at', 'updated_at', 'top_date', 'vip_date'], 'safe'],

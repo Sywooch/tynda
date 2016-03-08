@@ -7,11 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\users\UserAccount */
 /* @var $form yii\widgets\ActiveForm */
 $this->params['left'] = true;
-$paymentMethod = [
-	['id' => 'PC', 'name' => 'Со счета в Яндекс Деньгах'],
-	['id' => 'AC', 'name' => 'С банковской карты'],
-	['id' => 'GP', 'name' => 'Наличными']
-];
+$paymentMethod = \common\widgets\Arrays::paymentMethods();
 $methods = \yii\helpers\ArrayHelper::map($paymentMethod, 'id', 'name');
 $user = Yii::$app->user->getIdentity();
 $this->title = 'Пополнение баланса';

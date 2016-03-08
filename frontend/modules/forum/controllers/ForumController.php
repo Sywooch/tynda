@@ -46,9 +46,9 @@ class ForumController extends Controller
     public function actionIndex($category = null)
     {
         if($category != null){
-            $forums = Forums::find()->with('forumCats')->where(['status' => '1','alias'=>$category])->orderBy('order')->all();
+            $forums = Forums::find()->with('forumCatsFront')->where(['status' => '1','alias'=>$category])->orderBy('order')->all();
         }else{
-            $forums = Forums::find()->with('forumCats')->where(['status' => '1'])->andWhere(['on_main' => '1'])->orderBy('order')->all();
+            $forums = Forums::find()->with('forumCatsFront')->where(['status' => '1'])->andWhere(['on_main' => '1'])->orderBy('order')->all();
         }
         return $this->render('index', [
             'forums' => $forums,

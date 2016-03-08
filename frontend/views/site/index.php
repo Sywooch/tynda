@@ -6,6 +6,10 @@ use \common\widgets\Arrays;
 use app\widgets\DbText;
 $this->title = 'Наша тында';
 
+	$this->registerMetaTag(['content' => Html::encode('Городской портал Наша тында'), 'name' => 'description']);
+	$this->registerMetaTag(['content' => Html::encode('Городской портал Наша тында'), 'name' => 'keywords']);
+
+
 ?>
 <div class="site-index row" style="margin-top: 10px; margin-bottom: 20px;">
 	<div class="container-fluid">

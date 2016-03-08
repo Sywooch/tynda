@@ -36,7 +36,7 @@ $this->params['left'] = true;
 			<hr style="margin: 0px 0px 10px 0px; border: none; border-bottom: 1px solid #c6c6c6;">
 			<i class="small-text">Категории: </i>
 			<ul class="list-inline">
-				<?php foreach ($forum->forumCats as $fc) { ?>
+				<?php foreach ($forum->forumCatsFront as $fc) { ?>
 						<li style="padding: 0px;">
 							<a class="btn-u btn-u-sm btn-u-dark" href="<?= $path . $fc->alias ?>" style="margin-bottom: 3px;">
 									<?= $fc->name ?>&nbsp;&nbsp;

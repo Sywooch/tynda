@@ -41,7 +41,7 @@ $spec = \common\models\med\Spec::find()->asArray()->all();
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
-            ])->label('Укажите Вашу медецинскую специализацию'); ?>
+            ])->label('Укажите Вашу медицинскую специализацию'); ?>
         </div>
         <div class="filter_element col-sm-3 side_left">
             <?= $form->field($model, 'exp')->textInput()->label('Стаж работы (кол-во лет)'); ?>

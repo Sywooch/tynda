@@ -67,7 +67,7 @@ $this->params['left'] = true;
         <div class="col-md-2 side_left">
             <?= $form->field($model, 'salary')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col-md-4 side_left">
+        <div class="col-md-4">
             <?= $form->field($model, 'employment')->widget(Select2::classname(), [
                 'data' => Arrays::employment() ,
                 'hideSearch' => true,
@@ -75,7 +75,7 @@ $this->params['left'] = true;
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
-            ])->label('Укажите график работы'); ?>
+            ])->label('Укажите график работы (обязательное поле)'); ?>
         </div>
     </div>
 

@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
@@ -11,6 +12,10 @@ use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
 AppAsset::register($this);
+
+$this->registerMetaTag(['content' => Url::to('@frt_url/img/logo_2.png'), 'property' => 'og:image']);
+$this->registerMetaTag(['content' => Url::to('@frt_url').' - '.$this->title, 'property' => 'og:site_name']);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

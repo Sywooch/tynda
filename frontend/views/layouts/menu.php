@@ -13,13 +13,13 @@ $menuItems = [
         ['label' => 'Резюме', 'url' => ['/jobs/resume/index']],
         ['label' => 'Вакансии', 'url' => ['/jobs/vacancy/index']],
     ],],
-    ['label' => 'Врачи', 'url' => ['/med/doctors/index'], 'options' => ['class' => 'main_menu_li']],
+    //['label' => 'Врачи', 'url' => ['/med/doctors/index'], 'options' => ['class' => 'main_menu_li']],
     ['label' => 'Товары', 'url' => ['/goods/goods/index'], 'options' => ['class' => 'main_menu_li']],
     ['label' => 'Услуги', 'url' => ['/service/service/index'], 'options' => ['class' => 'main_menu_li'], 'items' => [
         ['label' => 'Оказание услуг', 'url' => ['/service/service/index']],
         ['label' => 'Получение услуг', 'url' => ['/service/set-service/index']],
     ],],
-    ['label' => 'Хобби', 'url' => ['/service/category/hobby'], 'options' => ['class' => 'main_menu_li']],
+    //['label' => 'Хобби', 'url' => ['/service/category/hobby'], 'options' => ['class' => 'main_menu_li']],
     ['label' => 'Афиша', 'url' => ['/afisha/afisha/index'], 'options' => ['class' => 'main_menu_li']],
     //['label' => 'Коллективные письма', 'url' => ['/site/in-work'], 'options' => ['class' => 'main_menu_li']],
    // ['label' => 'Авто', 'url' => ['/site/in-work'], 'options' => ['class' => 'main_menu_li']],
@@ -36,6 +36,8 @@ $menuItems = [
 
 $count = count($menuItems);
 $li = (100 / $count) - 0.01;
+
+
 
 ?>
 <style type="text/css">

@@ -58,7 +58,7 @@ class JobVacancy extends ActiveRecord
     public function rules()
     {
         return [
-            [['id_user', 'title'], 'required'],
+            [['id_user','title','employment','education'], 'required'],
             [['id_user', 'employment', 'status'], 'integer'],
             [['top_date', 'vip_date', 'created_at', 'updated_at'], 'safe'],
             [['salary'], 'number'],

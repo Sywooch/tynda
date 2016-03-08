@@ -14,7 +14,7 @@ use yii\widgets\Pjax;
 /* @var $form yii\widgets\ActiveForm */
 $this->params['left'] = true;
 $label = 'Выберите новое фото и подгоните выбраный файл под размер с помощью колесика мышки.';
-
+$model->isNewRecord ? $model->buy = 0 : $model->buy = $model->buy;
 ?>
 
 <div class="goods-form row">

@@ -104,6 +104,14 @@ class Forums extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getForumCatsFront()
+    {
+        return $this->hasMany(ForumCat::className(), ['id_forum' => 'id'])->andWhere(['status'=>1]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getForumMessages()
     {
         return $this->hasMany(ForumMessage::className(), ['id_forum' => 'id']);

@@ -38,7 +38,7 @@ use yii\helpers\Html;
 				<div class="col-md-3 md-margin-bottom-40">
 					<div class="headline"><h2>Полезные ссылки</h2></div>
 					<ul class="list-unstyled link-list">
-						<li><a href="#">О портале</a><i class="fa fa-angle-right"></i></li>
+						<li><?= Html::a('О сайте ', ['/page/page/view','id'=>'about']) ?><i class="fa fa-angle-right"></i></li>
 						<li><?= Html::a('Как пользоваться ', ['/page/page/index','cat'=>'kak-polzovatsa-sajtom']) ?><i class="fa fa-angle-right"></i></li>
 						<li><a href="#">Часто задаваемые вопросы</a><i class="fa fa-angle-right"></i></li>
 						<li><a href="#">Обратная связь</a><i class="fa fa-angle-right"></i></li>
@@ -54,8 +54,6 @@ use yii\helpers\Html;
 					<address class="md-margin-bottom-40">
 						Россия, Амурская область <br/>
 						г. Тында <br/>
-						тел: 800 123 3456 <br/>
-						тел: 800 123 3456 <br/>
 						Email: <a href="mailto:info@nashatynda.ru" class="">info@nashatynda.ru</a>
 					</address>
 				</div>
