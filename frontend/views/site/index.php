@@ -4,10 +4,11 @@ use yii\helpers\Url;
 use common\models\slider\SliderMain;
 use \common\widgets\Arrays;
 use app\widgets\DbText;
+use yii\helpers\Html;
 $this->title = 'Наша тында';
 
-	$this->registerMetaTag(['content' => Html::encode('Городской портал Наша тында'), 'name' => 'description']);
-	$this->registerMetaTag(['content' => Html::encode('Городской портал Наша тында'), 'name' => 'keywords']);
+	$this->registerMetaTag(['content' => Html::encode('Городской портал Наша Тында'), 'name' => 'description']);
+	$this->registerMetaTag(['content' => Html::encode('Городской портал Наша Тында'), 'name' => 'keywords']);
 
 
 ?>
