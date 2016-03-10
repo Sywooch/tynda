@@ -17,7 +17,7 @@ if(!empty($get['cat'])||!empty($get['JobResumeSearch']['cat'])){
     }else{
         $id_cat = $get['JobResumeSearch']['cat'];
     }
-    $this->params['breadcrumbs'][] = ['label' => 'Резюме', 'url' => [Url::home().'jobs/job-profile/index']];
+    $this->params['breadcrumbs'][] = ['label' => 'Резюме', 'url' => [Url::home().'jobs/resume/index']];
     $cat = \common\widgets\Arrays::getJobCatBiId($id_cat);
     $this->title = $cat['name'];
     $m_kw = $cat['m_keyword'];

@@ -165,29 +165,38 @@ class JobResumeSearch extends VResume
         $get = \Yii::$app->request->get('cat');
         if($get){
             $_idRes = JobCatRez::find()->where(['id_cat' => $get])->asArray()->all();
-            foreach ($_idRes as $id) {
-                $idRes[] = $id['id_res'];
-            }
-            if (is_array($idRes)) {
+            if (!empty($_idRes)) {
+                foreach ($_idRes as $id) {
+                    $idRes[] = $id['id_res'];
+                }
+
+                $id_res = array_unique($idRes);
+                if(!empty($id_res[0])){
                 if (($this->cat != '' || $this->cat_i != '') && ($this->checkAge($this->age_min, $this->age_max) || $this->salary_min != '' || $this->salary_max != '' || $this->checkEdu($this->education) || $this->checkSex($this->sex) || $arr[0] != '')) {
                     $sql .= ' AND ';
                 }
-                $id_res = array_unique($idRes);
-                $sql .= " id IN (" . implode(',', $id_res) . ") ";
+                    $sql .= " id IN (" . implode(',', $id_res) . ") ";
+                }else{
+                    return false;
+                }
             }else{
                 return false;
             }
         }else if ($this->cat != '') {
             $_idRes = JobCatRez::find()->where(['id_cat' => $this->cat])->asArray()->all();
-            foreach ($_idRes as $id) {
-                $idRes[] = $id['id_res'];
-            }
-            if (is_array($idRes)) {
+            if (!empty($_idRes)) {
+                foreach ($_idRes as $id) {
+                    $idRes[] = $id['id_res'];
+                }
+                $id_res = array_unique($idRes);
+                if(!empty($id_res[0])){
                 if (($this->cat != '' || $this->cat_i != '') && ($this->checkAge($this->age_min, $this->age_max) || $this->salary_min != '' || $this->salary_max != '' || $this->checkEdu($this->education) || $this->checkSex($this->sex) || $arr[0] != '')) {
                     $sql .= ' AND ';
                 }
-                $id_res = array_unique($idRes);
-                $sql .= " id IN (" . implode(',', $id_res) . ") ";
+                    $sql .= " id IN (" . implode(',', $id_res) . ") ";
+                }else{
+                    return false;
+                }
             }else{
                 return false;
             }
