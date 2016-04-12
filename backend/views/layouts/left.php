@@ -68,6 +68,13 @@ use yii\bootstrap\NavBar;
 				</ul>
 			</li>
 			<li>
+				<a href="#"><i class="fa fa-bank"></i><span class="nav-label">Фирмы</span><span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level collapse">
+					<li><?= Html::a('<i class="fa fa-cubes"></i> Категории фирм',['/firm/firm-cat/index']) ?></li>
+					<li><?= Html::a('<i class="fa fa-bank"></i> Фирмы',['/firm/firm/index']) ?></li>
+				</ul>
+			</li>
+			<li>
 				<a href="#"><i class="fa fa-flag"></i><span class="nav-label">Форум</span><span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
 					<li><?= Html::a('<i class="fa fa-share-alt"></i> Форумы',['/forum/forum/index']) ?></li>

@@ -18,7 +18,7 @@
 /*Top Bar v1 (login, search etc.)
 ------------------------------------*/
 .header-v4 .topbar-v1 {
-	background: #ededed;
+	/*background: #ededed;
 	background: -moz-linear-gradient(top, #ededed 0%, #e7e7e7 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#e7e7e7));
 	background: -webkit-linear-gradient(top, #ededed 0%,#e7e7e7 100%);
@@ -28,6 +28,17 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#e7e7e7',GradientType=0 );
 	border-top: solid 1px #c4c4c4;
 	border-bottom: solid 1px #c4c4c4;
+	*/
+	background: #fff;
+	border-top: solid 1px #c4c4c4;
+	border-bottom: solid 1px #c4c4c4;
+	color: #820000 !important;
+}
+.header-v4 .topbar-v1 *{
+	color: #820000 !important;
+}
+.header-v4 .topbar-v1 a:hover{
+	color: #A90000 !important;
 }
 
 /*Top Contacts*/
@@ -231,9 +242,9 @@
 /*Navbar Menu*/
 .header-v4 .navbar-default .navbar-nav > li > a {
 	text-align: center;
-	color: #687074;
+	color: #820000;
 	font-size: 15px;
-	font-weight:400;
+	font-weight:700;
 	text-transform: uppercase;
 }
 

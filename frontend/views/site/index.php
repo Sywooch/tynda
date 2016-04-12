@@ -5,7 +5,7 @@ use common\models\slider\SliderMain;
 use \common\widgets\Arrays;
 use app\widgets\DbText;
 use yii\helpers\Html;
-$this->title = 'Наша тында';
+$this->title = 'Наша Тында';
 
 	$this->registerMetaTag(['content' => Html::encode('Городской портал Наша Тында'), 'name' => 'description']);
 	$this->registerMetaTag(['content' => Html::encode('Городской портал Наша Тында'), 'name' => 'keywords']);
@@ -13,6 +13,7 @@ $this->title = 'Наша тында';
 
 ?>
 <div class="site-index row" style="margin-top: 10px; margin-bottom: 20px;">
+	<?php if(DbText::widget(['key' => 'text-on-main-comming-soon'])){ ?>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12 shadow-wrapper">
@@ -22,6 +23,7 @@ $this->title = 'Наша тында';
 			</div>
 		</div>
 	</div>
+	<?php } ?>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-7 side_left">

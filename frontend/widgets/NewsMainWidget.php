@@ -36,7 +36,7 @@ class NewsMainWidget extends Widget
                 ->where(['status' => 1])
                 ->andWhere('(publish < NOW() AND (unpublish < NOW()OR unpublish IS NULL))')
                 ->orderBy(['publish' => SORT_DESC])
-                ->limit(3)
+                ->limit(4)
                 ->all();
         }, Arrays::CASH_TIME, $dependency);
 
