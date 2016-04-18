@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\firm\FirmCat */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Firm Cats', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Категории фирм', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="firm-cat-view">
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы действительно хотите удалить эту категорию? ВНИМАНИЕ при удалении категории удалятся все фирмы входящие в эту категорию',
                 'method' => 'post',
             ],
         ]) ?>

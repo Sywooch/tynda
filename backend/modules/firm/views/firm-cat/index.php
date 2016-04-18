@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\firm\FirmCatSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Firm Cats';
+$this->title = 'Категории фирм';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="firm-cat-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Firm Cat', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать новую категорию', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'status',
             'order',
             'name',
-            // 'slug',
+            'slug',
             // 'mk',
             // 'md',
 

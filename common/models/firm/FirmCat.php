@@ -3,7 +3,9 @@
 namespace common\models\firm;
 
 use Yii;
-
+use yii\behaviors\SluggableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 /**
  * This is the model class for table "firm_cat".
  *
@@ -22,6 +24,20 @@ use Yii;
  */
 class FirmCat extends \yii\db\ActiveRecord
 {
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                'slugAttribute' => 'slug',
+                'immutable' => true,
+            ],
+        ];
+    }
     /**
      * @inheritdoc
      */

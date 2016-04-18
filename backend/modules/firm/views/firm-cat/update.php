@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\firm\FirmCat */
 
-$this->title = 'Update Firm Cat: ' . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Firm Cats', 'url' => ['index']];
+$this->title = 'Редактирование категории: ' . ' ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Категории фирм', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 <div class="firm-cat-update">
 

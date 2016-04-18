@@ -19,7 +19,7 @@ class FirmSearch extends Firm
     {
         return [
             [['id', 'id_cat', 'id_user', 'status', 'show_requisites'], 'integer'],
-            [['name', 'tel', 'email', 'site', 'logo', 'description', 'created_at', 'updated_at', 'mk', 'md'], 'safe'],
+            [['name', 'tel', 'email', 'site', 'logo', 'description', 'created_at', 'updated_at', 'mk', 'md', 'address', 'lat', 'lon'], 'safe'],
         ];
     }
 
@@ -73,6 +73,9 @@ class FirmSearch extends Firm
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'site', $this->site])
             ->andFilterWhere(['like', 'logo', $this->logo])
+            ->andFilterWhere(['like', 'address', $this->address])
+            ->andFilterWhere(['like', 'lat', $this->lat])
+            ->andFilterWhere(['like', 'lon', $this->lon])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'mk', $this->mk])
             ->andFilterWhere(['like', 'md', $this->md]);

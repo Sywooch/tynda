@@ -3,7 +3,10 @@
 namespace common\models\firm;
 
 use Yii;
-
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
+use yii\web\UploadedFile;
 /**
  * This is the model class for table "firm".
  *
@@ -22,11 +25,31 @@ use Yii;
  * @property string $updated_at
  * @property string $mk
  * @property string $md
- *
- * @property FirmCat $idCat
+ * @property string $address
+ * @property string $lat
+ * @property string $lon
+ * @property FirmCat $cat
+ * @property array $image
  */
 class Firm extends \yii\db\ActiveRecord
 {
+    public $image;
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at', 'publish'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
     /**
      * @inheritdoc
      */
@@ -45,8 +68,10 @@ class Firm extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 100],
-            [['tel', 'email', 'site', 'logo', 'mk', 'md'], 'string', 'max' => 255],
+            [['lat','lon'], 'string', 'max' => 100],
+            [['tel', 'email', 'site', 'logo', 'address', 'mk', 'md'], 'string', 'max' => 255],
             [['id_cat'], 'exist', 'skipOnError' => true, 'targetClass' => FirmCat::className(), 'targetAttribute' => ['id_cat' => 'id']],
+            [['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -59,6 +84,7 @@ class Firm extends \yii\db\ActiveRecord
             'id' => 'ID',
             'id_cat' => 'Категория',
             'id_user' => 'Пользователь',
+            'image' => 'Логотип',
             'status' => 'Статус',
             'show_requisites' => 'Показывать реквизиты',
             'name' => 'Название компании',
@@ -66,6 +92,9 @@ class Firm extends \yii\db\ActiveRecord
             'email' => 'Email',
             'site' => 'Сайт',
             'logo' => 'Логотип',
+            'address' => 'Адрес',
+            'lat' => 'Широта',
+            'lon' => 'Долгота',
             'description' => 'Описание',
             'created_at' => 'Дата создания',
             'updated_at' => 'Дата изменения',
@@ -77,8 +106,20 @@ class Firm extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdCat()
+    public function getCat()
     {
         return $this->hasOne(FirmCat::className(), ['id' => 'id_cat'])->inverseOf('firms');
+    }
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $pathFile = Yii::getAlias('@frt_dir/img/logo/') . $this->image->tempName . '.' . $this->image->extension;
+            $this->image->saveAs($pathFile);
+            $this->logo = $pathFile;
+            return true;
+        } else {
+            return false;
+        }
     }
 }

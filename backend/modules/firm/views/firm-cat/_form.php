@@ -6,15 +6,19 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\firm\FirmCat */
 /* @var $form yii\widgets\ActiveForm */
+$model->isNewRecord ? $model->status = 1 : '';
+
+$categories = $model->find()->where(['status'=>1])->orderBy('order')->all();
+
 ?>
 
 <div class="firm-cat-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_parent')->textInput() ?>
+    <?= $form->field($model, 'id_parent')->dropDownList(\yii\helpers\ArrayHelper::map($categories, 'id', 'name'), ['prompt' => 'Выберите родительскую категорию...']) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->checkbox() ?>
 
     <?= $form->field($model, 'order')->textInput() ?>
 
@@ -22,12 +26,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'mk')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'mk')->textarea(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'md')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'md')->textarea(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

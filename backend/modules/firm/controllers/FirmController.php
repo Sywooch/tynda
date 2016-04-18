@@ -8,6 +8,7 @@ use common\models\firm\FirmSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * FirmController implements the CRUD actions for Firm model.
@@ -65,8 +66,14 @@ class FirmController extends Controller
     {
         $model = new Firm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->image = UploadedFile::getInstance($model, 'image');
+            $model->save();
+            if($model->upload()){
+
+            }
+            $model->save();
+            return $this->redirect(['update', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -84,13 +91,16 @@ class FirmController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->image = UploadedFile::getInstance($model, 'image');
+            if($model->upload()){
+
+            }
+            $model->save();
         }
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**

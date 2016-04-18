@@ -36,7 +36,7 @@ label {
 }
 
 a {
-   color: #530605;
+   color: #222;
    text-decoration: none;
 }
 
@@ -50,7 +50,7 @@ a:focus {
   text-decoration: none;
 }
 a:hover {
-   color: #530605;
+   color: #330605;
    text-decoration: underline;
 }
 
